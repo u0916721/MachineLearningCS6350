@@ -19,7 +19,7 @@ if __name__ == "__main__":
     #Will change with args later no need to be bogged down by those details now though. 
     relative_path = os.path.join('DataSets', 'Car', 'car.data')
     read_file(relative_path)
-    print(trainingData)
     n = node(None,None,trainingData)
     n.calcLabel()
     print(n.label)
+

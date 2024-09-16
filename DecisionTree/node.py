@@ -32,6 +32,16 @@ class node:
                 bestLabelVal = k
                 bestValue = d[k]
         self.label = bestLabelVal
+    
+    #Below method checks if their is only one label, a base case for ID3
+    def hasOnlyOneLabel(self):
+        #Should not be possible to be a list of size 0 but might need to watch out here
+        label = self.trainingDataSet[0][len(self.trainingDataSet[0])-1]
+        for sample in self.trainingDataSet:
+            if sample[len(sample)-1] != label:
+                return False
+        return True
+             
             
             
             

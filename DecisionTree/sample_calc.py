@@ -16,6 +16,13 @@ def getOccurrencesOfAttributeValue(attribute,value,trainingDataSet):
             occurences = occurences + 1
     return occurences
 
+def getOccurancesOfLabelGivenAttirbuteTrainingDataSet(label,trainingDataSet):
+    count = 0
+    for sample in trainingDataSet:
+        if sample[len(sample) - 1] == label:
+            count = count + 1
+    return count
+
 #Super simple at first just returns the count of all samples of attribute values that have the label
 def getOccurancesOfLabelGivenAttirbuteValue(attribute,value,label,trainingDataSet):
     count = 0
@@ -36,7 +43,7 @@ def getCountOfLabelsGivenAttributeValue(attribute,value,labels,trainingDataSet,s
 def calculateEntropyOfAttributeValue(ratios):
     entropy = 0.0
     for r in ratios:
-        entropy = entropy - math_helper.calcEntropy(r)
+        entropy = entropy + math_helper.calcEntropy(r)
     return entropy
 
 #(|Sv|/|S|) * entropy
@@ -55,27 +62,42 @@ def getEntropyOfAllAttributeValues(attribute,values,labels,trainingDataSet):
     for v in values:
         #This is |Sv|
         sv = getOccurrencesOfAttributeValue(attribute,v,trainingDataSet)
-        entropy = entropy + multiplyEntropyByTotal((sv/s),sum(calculateEntropyOfAttributeValue(getCountOfLabelsGivenAttributeValue(attribute, v, labels, trainingDataSet,getOccurrencesOfAttributeValue(attribute,v,trainingDataSet)))))
+        attributeValueCount = getOccurrencesOfAttributeValue(attribute,v,trainingDataSet)
+        attributRatios = getCountOfLabelsGivenAttributeValue(attribute,v,labels,trainingDataSet,attributeValueCount)
+        entropyAttributeVale = calculateEntropyOfAttributeValue()
+        entropy = entropy - multiplyEntropyByTotal((sv/s),sum(calculateEntropyOfAttributeValue(getCountOfLabelsGivenAttributeValue(attribute, v, labels, trainingDataSet,getOccurrencesOfAttributeValue(attribute,v,trainingDataSet)))))
     return entropy
         
-def calculateGain(totalEntropy, labels,trainingDataSet,attributes):
-    totalEntropy = calcTotalEntropy(labels,trainingDataSet)
+def calculateGain(labels,trainingDataSet,attributes):
+    totalEntropy = calcTotalEntropy(labels,trainingDataSet,None)
     #Optimization loop?
     # Rememeber attributes is a list of ints
     bestAttribute = attributes[0]
     bestValue = float('-inf')
+    #Keep track of the index of the atributeValues
+    indexAttribute = 0
     for a in attributes:
-        gain = totalEntropy - getEntropyOfAllAttributeValues(a,getAttributeValues(a,trainingDataSet),labels,trainingDataSet)
+        gain = totalEntropy - getEntropyOfAllAttributeValues(indexAttribute,getAttributeValues(indexAttribute,trainingDataSet),labels,trainingDataSet)
         if gain > bestValue:
-            bestAttribute = bestValue
+            bestAttribute = a
             bestValue = gain
+        indexAttribute = indexAttribute + 1
     return (bestAttribute,bestValue)
 
-def calcTotalEntropy(labels,trainingDataSet):
-    return
+def calcTotalEntropy(labels,trainingDataSet,mathFunc):
+    sizeOfWholeSet = len(trainingDataSet)
+    entropy = 0
+    for label in labels:
+        #print(str(getOccurancesOfLabelGivenAttirbuteTrainingDataSet(label,trainingDataSet)) + " /" + str(sizeOfWholeSet))
+        entropy = entropy + math_helper.calcEntropy(getOccurancesOfLabelGivenAttirbuteTrainingDataSet(label,trainingDataSet)/sizeOfWholeSet)
+    return entropy
 
-def getAttributeValues(attribute,trainingDataSet):
-    return
+def getAttributeValues(attributeIndex,trainingDataSet):
+    attributeValues = set()
+    for sample in trainingDataSet:
+        attributeValues.add(sample[attributeIndex])
+        
+    return list(attributeValues)
 
 if __name__ == '__main__':
     #Main funcion of this file runs a bunch of simple tests
@@ -105,3 +127,10 @@ if __name__ == '__main__':
     print("testCase5 getOccurrencesOfAttributeValue Pass: " + str(getOccurrencesOfAttributeValue(2,'N',trainingData) == 7))
     print("testCase6 getOccurancesOfLabelGivenAttirbuteValue Pass: " + str(getOccurancesOfLabelGivenAttirbuteValue(1,'C','+',trainingData) == 3))
     print("testCase7 getOccurancesOfLabelGivenAttirbuteValue Pass: " + str(getOccurancesOfLabelGivenAttirbuteValue(1,'C','-',trainingData) == 1))
+    print("testCase8 getOccurancesOfLabelGivenAttirbuteValue Pass: " + str(getOccurancesOfLabelGivenAttirbuteValue(1,'C','-',trainingData) == 1))
+    print("testCase9 getOccurancesOfLabelGivenAttirbuteTrainingDataSet Pass: " + str(getOccurancesOfLabelGivenAttirbuteTrainingDataSet('-',trainingData) == 5))
+    print("testCase10 getOccurancesOfLabelGivenAttirbuteTrainingDataSet Pass: " + str(getOccurancesOfLabelGivenAttirbuteTrainingDataSet('+',trainingData) == 9))
+    print("testCase11 math_helper.calcEntropy Pass: " + str(math_helper.calcEntropy(9/14) == 0.40977637753840174))
+    print("testCase12 calcTotalEntropy Pass: " + str(calcTotalEntropy(values,trainingData,None) == 0.9402859586706309))
+    print("testCase13 getCountOfLabelsGivenAttributeValue Pass: " + str(getCountOfLabelsGivenAttributeValue(1,'C',values,trainingData,getOccurrencesOfAttributeValue(1,'C',trainingData)) == [0.75, 0.25]))
+    #print("testCase14 getOccurancesOfLabelGivenAttirbuteTrainingDataSet Pass: " + str(calculateGain(values,trainingData,attributes)))

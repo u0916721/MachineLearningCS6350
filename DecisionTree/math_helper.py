@@ -3,10 +3,11 @@
 # Gini Index
 # Entropy 
 # Information Gain
+import math
 
 #Calculates the entropy
 def calcEntropy(val):
-    return 69
+    return -1 * val * math.log2(val)
 
 #Calculates Gini Index
 def calcGiniIndex():

@@ -12,7 +12,7 @@ def calcEntropy(val):
     return -1 * val * math.log2(val)
 
 #Calculates Gini Index
-def calcGiniIndex():
+def calcGiniIndex(val):
     return 69
 
 #Calculates Gini Index

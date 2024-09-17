@@ -57,15 +57,16 @@ def sumEntropyOfAllAttributeValues(entropyList):
 # This is the SUM portion or |Sv|/|S| * entropy(v)
 def getEntropyOfAllAttributeValues(attribute,values,labels,trainingDataSet):
     # This is |S|
-    s = len(trainingDataSet) -1
+    s = len(trainingDataSet)
     entropy = 0
     for v in values:
         #This is |Sv|
         sv = getOccurrencesOfAttributeValue(attribute,v,trainingDataSet)
         attributeValueCount = getOccurrencesOfAttributeValue(attribute,v,trainingDataSet)
         attributRatios = getCountOfLabelsGivenAttributeValue(attribute,v,labels,trainingDataSet,attributeValueCount)
-        entropyAttributeVale = calculateEntropyOfAttributeValue()
-        entropy = entropy - multiplyEntropyByTotal((sv/s),sum(calculateEntropyOfAttributeValue(getCountOfLabelsGivenAttributeValue(attribute, v, labels, trainingDataSet,getOccurrencesOfAttributeValue(attribute,v,trainingDataSet)))))
+        entropyAttributeValue = calculateEntropyOfAttributeValue(attributRatios)
+        #print(str(sv) + "/" + str(s) + " * " + str(entropyAttributeValue))
+        entropy = entropy + multiplyEntropyByTotal((sv/s),entropyAttributeValue)
     return entropy
         
 def calculateGain(labels,trainingDataSet,attributes):
@@ -133,4 +134,5 @@ if __name__ == '__main__':
     print("testCase11 math_helper.calcEntropy Pass: " + str(math_helper.calcEntropy(9/14) == 0.40977637753840174))
     print("testCase12 calcTotalEntropy Pass: " + str(calcTotalEntropy(values,trainingData,None) == 0.9402859586706309))
     print("testCase13 getCountOfLabelsGivenAttributeValue Pass: " + str(getCountOfLabelsGivenAttributeValue(1,'C',values,trainingData,getOccurrencesOfAttributeValue(1,'C',trainingData)) == [0.75, 0.25]))
-    #print("testCase14 getOccurancesOfLabelGivenAttirbuteTrainingDataSet Pass: " + str(calculateGain(values,trainingData,attributes)))
+    print("testCase14 calculateEntropyOfAttributeValue Pass: " + str(getEntropyOfAllAttributeValues(0,['O','R','S'],values,trainingData) == 0.6935361388961918))
+    print("testCase15 calculateGain Pass: " + str(calculateGain(values,trainingData,attributes)))

@@ -13,7 +13,7 @@ def calcEntropy(val):
 
 #Calculates Gini Index
 def calcGiniIndex(val):
-    return 69
+    return val * val
 
 #Calculates Gini Index
 def calcMajorityError():

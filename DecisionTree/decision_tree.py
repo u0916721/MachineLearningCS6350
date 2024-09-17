@@ -6,6 +6,9 @@ class decision_tree:
         # set the rootNode, which should not be None, but rather a Node class with all the training data
         self.root = root
         self.depth = depth
+        
+    def getInfromationGainForAttribute():
+        return 
     # We could make these generic and pass in a math function instead that calculates each of these but
     # optimize later, make changes if needed
     def createTreeInformationGain(self,depth,root: node):

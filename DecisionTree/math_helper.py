@@ -5,7 +5,7 @@
 # Information Gain
 
 #Calculates the entropy
-def calcEntropy():
+def calcEntropy(val):
     return 69
 
 #Calculates Gini Index

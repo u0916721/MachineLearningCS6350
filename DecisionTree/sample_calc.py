@@ -3,7 +3,7 @@ import math_helper
 
 #Gets |S|
 def getSizeofWholeSet(trainingDataSet):
-    return len(trainingDataSet) -1
+    return len(trainingDataSet)
 
 # Gets |S_AV|
 def getOccurrencesOfAttributeValue(attribute,value,trainingDataSet):
@@ -55,7 +55,53 @@ def getEntropyOfAllAttributeValues(attribute,values,labels,trainingDataSet):
     for v in values:
         #This is |Sv|
         sv = getOccurrencesOfAttributeValue(attribute,v,trainingDataSet)
-        entropy = calculateEntropyOfAttributeValue(getCountOfLabelsGivenAttributeValue(attribute, v, labels, trainingDataSet,getOccurrencesOfAttributeValue(attribute,v,trainingDataSet)))
-
+        entropy = entropy + multiplyEntropyByTotal((sv/s),sum(calculateEntropyOfAttributeValue(getCountOfLabelsGivenAttributeValue(attribute, v, labels, trainingDataSet,getOccurrencesOfAttributeValue(attribute,v,trainingDataSet)))))
+    return entropy
         
-    
+def calculateGain(totalEntropy, labels,trainingDataSet,attributes):
+    totalEntropy = calcTotalEntropy(labels,trainingDataSet)
+    #Optimization loop?
+    # Rememeber attributes is a list of ints
+    bestAttribute = attributes[0]
+    bestValue = float('-inf')
+    for a in attributes:
+        gain = totalEntropy - getEntropyOfAllAttributeValues(a,getAttributeValues(a,trainingDataSet),labels,trainingDataSet)
+        if gain > bestValue:
+            bestAttribute = bestValue
+            bestValue = gain
+    return (bestAttribute,bestValue)
+
+def calcTotalEntropy(labels,trainingDataSet):
+    return
+
+def getAttributeValues(attribute,trainingDataSet):
+    return
+
+if __name__ == '__main__':
+    #Main funcion of this file runs a bunch of simple tests
+    #We are going to use the example given in lecture for our data
+    attributes = ['O','T','H','W']
+    values = ['+','-']
+    trainingData = []
+    trainingData.append(['S','H','H','W','-'])
+    trainingData.append(['S','H','H','S','-'])
+    trainingData.append(['O','H','H','W','+'])
+    trainingData.append(['R','M','H','W','+'])
+    trainingData.append(['R','C','N','W','+'])
+    trainingData.append(['R','C','N','S','-'])
+    trainingData.append(['O','C','N','S','+'])
+    trainingData.append(['S','M','H','W','-'])
+    trainingData.append(['S','C','N','W','+'])
+    trainingData.append(['R','M','N','W','+'])
+    trainingData.append(['S','M','N','S','+'])
+    trainingData.append(['O','M','H','S','+'])
+    trainingData.append(['O','H','N','W','+'])
+    trainingData.append(['R','M','H','S','-'])
+    print("testCase0 get size of whole set Pass: " + str(getSizeofWholeSet(trainingData) == 14))
+    print("testCase1 getOccurrencesOfAttributeValue Pass: " + str(getOccurrencesOfAttributeValue(0,'R',trainingData) == 5))
+    print("testCase2 getOccurrencesOfAttributeValue Pass: " + str(getOccurrencesOfAttributeValue(0,'S',trainingData) == 5))
+    print("testCase3 getOccurrencesOfAttributeValue Pass: " + str(getOccurrencesOfAttributeValue(0,'O',trainingData) == 4))
+    print("testCase4 getOccurrencesOfAttributeValue Pass: " + str(getOccurrencesOfAttributeValue(2,'H',trainingData) == 7))
+    print("testCase5 getOccurrencesOfAttributeValue Pass: " + str(getOccurrencesOfAttributeValue(2,'N',trainingData) == 7))
+    print("testCase6 getOccurancesOfLabelGivenAttirbuteValue Pass: " + str(getOccurancesOfLabelGivenAttirbuteValue(1,'C','+',trainingData) == 3))
+    print("testCase7 getOccurancesOfLabelGivenAttirbuteValue Pass: " + str(getOccurancesOfLabelGivenAttirbuteValue(1,'C','-',trainingData) == 1))

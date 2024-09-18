@@ -219,6 +219,10 @@ def partitionTrainingDataSetBasedOnAttributeValue(attribute,attributeValue,train
         if sample[attribute] == attributeValue:
             newPartition.append(sample)
     return newPartition
+def removeAttributeFromAttributeList(attribute,attributes):
+    newAttributes = copy.deepcopy(attributes)
+    newAttributes.pop(getIndexOfAttribute(attribute,attributes))
+    return newAttributes
             
 
 if __name__ == '__main__':
@@ -295,3 +299,4 @@ if __name__ == '__main__':
     trainingData3.append(['R','M','N','W','+'])
     trainingData3.append(['R','M','H','S','-'])
     print("testCase23 testpartitionTrainingDataSetBasedOnAttributeValue Pass: " + str(trainingData3 == partitionTrainingDataSetBasedOnAttributeValue(getIndexOfAttribute('O',attributes),'R',trainingData)))
+    print("testCase24 removeAttributeFromAttributeList Pass: " + str(["H","G"] == removeAttributeFromAttributeList("R",["H","G","R"])))

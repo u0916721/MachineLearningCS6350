@@ -1,9 +1,9 @@
 # This is a node class for our tree
 # Keeping it simple for now, but may need to add additional complexity, such as if its a leaf
 class node:
-    def __init__(self, splitAttribute, splitValue,trainingDataSet,attributes,labels):
+    def __init__(self, splitValue,trainingDataSet,attributes,attributeValues,labels):
         #The attribute that we split on such as "Outlook"
-        self.splitAttribute =  splitAttribute    
+        self.splitAttribute =  None    
         # The value of the attribute that we split on, example "Rainy"
         self.splitValue = splitValue  
         # All of the children, or further splits
@@ -11,8 +11,12 @@ class node:
         self.trainingDataSet = trainingDataSet
         #Example -> ['O','K']
         self.attributes = attributes
+        #Example{'O':['','']}
+        self.attributesValues = attributeValues
         # Example -> ["+","-"]
         self.labels = labels
+        
+        self.children = []
         # The label of the trainingDataSet, iff we reach a depth limit
         # example [+,-,+,+] -> because + is the majorirty that is our label. 
         # This is only calculated if the node is a root
@@ -45,6 +49,9 @@ class node:
             if sample[len(sample)-1] != label:
                 return False
         return True
+    
+    def printNode(self):
+        print("Attribute split from is " + str(self.splitValue)+ " Training DataSet is " + str(self.trainingDataSet))
              
             
             

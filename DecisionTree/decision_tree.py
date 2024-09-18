@@ -6,11 +6,10 @@ import sample_calc
     # optimize later, make changes if needed
 def createTreeInformationGainEntropy(depth,root: node,purityFunction):
         # Basecase
-    #root.printNode()
+    # root.printNode()
     if depth == 0 or root.hasOnlyOneLabel():
         # print()
         # print("basecase reached leaf node is below ")
-        root.printNode()
         # print()
         return
         #Next tasks find the attribute with the best information gain and split on this attribute
@@ -41,6 +40,33 @@ def createTreeInformationGainEntropy(depth,root: node,purityFunction):
         # c.printNode()
         createTreeInformationGainEntropy(depth -1,c,purityFunction)
     return 
+def perdict(tree: node, sample):
+    #Basecase
+    # print()
+    # tree.printNode()
+    # print()
+    if not tree.children:
+        return tree.label
+    #Get the tree split attibute, this is what we are splitting on
+    splitAttibute = tree.splitAttribute
+    #find its indexed value in the sample
+    # print(sample)
+    indexedValue = sample_calc.getIndexOfAttribute(splitAttibute,tree.attributes)
+    #Now get the value
+    attributeValue = sample[indexedValue]
+    # print(attributeValue)
+    # print(splitAttibute)
+    # print(indexedValue)
+    # print(str(sample))
+    # exit()
+    nodeToGo = None
+    for c in tree.children:
+        if c.splitValue == attributeValue:
+            nodeToGo = c
+    #Given some sample ['S','H','H','W','-']
+    #nodeToGo.printNode()
+    sample.pop(indexedValue)
+    return perdict(nodeToGo,sample)
 def createTreeMajorityError():
     return None
 def createTreeGiniIndex():
@@ -68,4 +94,35 @@ if __name__ == '__main__':
     trainingData.append(['O','H','N','W','+'])
     trainingData.append(['R','M','H','S','-'])
     testNode =  node(None,trainingData,attributes,attributeValues,values)
-    createTreeInformationGainEntropy(1,testNode,sample_calc.calculateBestGainEntropy)
+    createTreeInformationGainEntropy(6,testNode,sample_calc.calculateBestGainEntropy)
+    #print(str(perdict(testNode,['S','H','H','W','-'])))
+    print("testCase0 perdict Pass: " + str(perdict(testNode,['S','H','H','W','-']) == '-'))
+    print("testCase1 perdict Pass: " + str(perdict(testNode,['S','H','H','S','-']) == '-'))
+    print("testCase2 perdict Pass: " + str(perdict(testNode,['O','H','H','W','+']) == '+'))
+    print("testCase3 perdict Pass: " + str(perdict(testNode,['R','M','H','W','+']) == '+'))
+    print("testCase4 perdict Pass: " + str(perdict(testNode,['R','C','N','W','+']) == '+'))
+    print("testCase5 perdict Pass: " + str(perdict(testNode,['R','C','N','S','-']) == '-'))
+    print("testCase6 perdict Pass: " + str(perdict(testNode,['O','C','N','S','+']) == '+'))
+    print("testCase7 perdict Pass: " + str(perdict(testNode,['S','M','H','W','-']) == '-'))
+    print("testCase8 perdict Pass: " + str(perdict(testNode,['S','C','N','W','+']) == '+'))
+    print("testCase9 perdict Pass: " + str(perdict(testNode,['R','M','N','W','+']) == '+'))
+    print("testCase10 perdict Pass: " + str(perdict(testNode,['S','M','N','S','+']) == '+'))
+    print("testCase11 perdict Pass: " + str(perdict(testNode,['O','M','H','S','+']) == '+'))
+    print("testCase12 perdict Pass: " + str(perdict(testNode,['O','H','N','W','+']) == '+'))
+    print("testCase13 perdict Pass: " + str(perdict(testNode,['R','M','H','S','-']) == '-'))
+    
+    print("testCase14 perdict Pass: " + str(perdict(testNode,['S','H','H','W','+']) == '-'))
+    print("testCase15 perdict Pass: " + str(perdict(testNode,['S','H','H','S','+']) == '-'))
+    print("testCase16 perdict Pass: " + str(perdict(testNode,['O','H','H','W','-']) == '+'))
+    print("testCase17 perdict Pass: " + str(perdict(testNode,['R','M','H','W','-']) == '+'))
+    print("testCase18 perdict Pass: " + str(perdict(testNode,['R','C','N','W','-']) == '+'))
+    print("testCase19 perdict Pass: " + str(perdict(testNode,['R','C','N','S','+']) == '-'))
+    print("testCase20 perdict Pass: " + str(perdict(testNode,['O','C','N','S','-']) == '+'))
+    print("testCase21 perdict Pass: " + str(perdict(testNode,['S','M','H','W','+']) == '-'))
+    print("testCase22 perdict Pass: " + str(perdict(testNode,['S','C','N','W','-']) == '+'))
+    print("testCase23 perdict Pass: " + str(perdict(testNode,['R','M','N','W','-']) == '+'))
+    print("testCase24 perdict Pass: " + str(perdict(testNode,['S','M','N','S','-']) == '+'))
+    print("testCase25 perdict Pass: " + str(perdict(testNode,['O','M','H','S','-']) == '+'))
+    print("testCase26 perdict Pass: " + str(perdict(testNode,['O','H','N','W','-']) == '+'))
+    print("testCase27 perdict Pass: " + str(perdict(testNode,['R','M','H','S','+']) == '-'))
+

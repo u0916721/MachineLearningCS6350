@@ -20,6 +20,7 @@ class node:
         # The label of the trainingDataSet, iff we reach a depth limit
         # example [+,-,+,+] -> because + is the majorirty that is our label. 
         # This is only calculated if the node is a root
+        self.calcLabel()
     
     def calcLabel(self):
         #Gets and sets the majority label
@@ -51,7 +52,8 @@ class node:
         return True
     
     def printNode(self):
-        print("Attribute split from is " + str(self.splitValue)+ " Training DataSet is " + str(self.trainingDataSet))
+        print("Attribute split from is " + str(self.splitValue)+ " and is split from attribute " + str(self.splitAttribute) + " Training DataSet is " + str(self.trainingDataSet) + " Majority Label is " + str(self.label))
+        print("Children are " + str(self.children))
              
             
             

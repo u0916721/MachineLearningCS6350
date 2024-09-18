@@ -212,6 +212,13 @@ def removeAttributeFromTrainingDataSet(attribute,trainingDataSet):
     for sample in trainingDataSetWithRemoved:
         sample.pop(attribute)
     return trainingDataSetWithRemoved
+
+def partitionTrainingDataSetBasedOnAttributeValue(attribute,attributeValue,trainingDataSet):
+    newPartition = []
+    for sample in trainingDataSet:
+        if sample[attribute] == attributeValue:
+            newPartition.append(sample)
+    return newPartition
             
 
 if __name__ == '__main__':
@@ -281,3 +288,10 @@ if __name__ == '__main__':
     trainingData2.append(['O','H','W','+'])
     trainingData2.append(['R','M','S','-'])
     print("testCase22 testRemove Pass: " + str(trainingData2 == removeAttributeFromTrainingDataSet(getIndexOfAttribute('H',attributes),trainingData)))
+    trainingData3 = []
+    trainingData3.append(['R','M','H','W','+'])
+    trainingData3.append(['R','C','N','W','+'])
+    trainingData3.append(['R','C','N','S','-'])
+    trainingData3.append(['R','M','N','W','+'])
+    trainingData3.append(['R','M','H','S','-'])
+    print("testCase23 testpartitionTrainingDataSetBasedOnAttributeValue Pass: " + str(trainingData3 == partitionTrainingDataSetBasedOnAttributeValue(getIndexOfAttribute('O',attributes),'R',trainingData)))

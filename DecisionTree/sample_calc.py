@@ -46,13 +46,20 @@ def calculateEntropyOfAttributeValue(ratios):
         entropy = entropy + math_helper.calcEntropy(r)
     return entropy
 
+# Takes in the ratios and calculates their entropy
+def calculateGiniIndexOfAttributeValue(ratios):
+    gini = 0.0
+    for r in ratios:
+        gini = gini + math_helper.calcGiniIndex(r)
+    return 1 - gini
+
 #(|Sv|/|S|) * entropy
 def multiplyEntropyByTotal(total,entropy):
     return total * entropy
 
-# Adds all entropy attribute values together
-def sumEntropyOfAllAttributeValues(entropyList):
-    return sum(entropyList)
+#(|Sv|/|S|) * entropy
+def multiplyGiniByTotal(total,gini):
+    return total * gini
 
 # This is the SUM portion or |Sv|/|S| * entropy(v)
 def getEntropyOfAllAttributeValues(attribute,values,labels,trainingDataSet):
@@ -68,9 +75,23 @@ def getEntropyOfAllAttributeValues(attribute,values,labels,trainingDataSet):
         #print(str(sv) + "/" + str(s) + " * " + str(entropyAttributeValue))
         entropy = entropy + multiplyEntropyByTotal((sv/s),entropyAttributeValue)
     return entropy
+# This is the SUM portion or |Sv|/|S| * entropy(v)
+def getGinniOfAllAttributeValues(attribute,values,labels,trainingDataSet):
+    # This is |S|
+    s = len(trainingDataSet)
+    gini = 0
+    for v in values:
+        #This is |Sv|
+        sv = getOccurrencesOfAttributeValue(attribute,v,trainingDataSet)
+        attributeValueCount = getOccurrencesOfAttributeValue(attribute,v,trainingDataSet)
+        attributRatios = getCountOfLabelsGivenAttributeValue(attribute,v,labels,trainingDataSet,attributeValueCount)
+        giniAttributeValue = calculateGiniIndexOfAttributeValue(attributRatios)
+        #print(str(sv) + "/" + str(s) + " * " + str(entropyAttributeValue))
+        gini = gini + multiplyGiniByTotal((sv/s),giniAttributeValue)
+    return gini
         
-def calculateBestGain(labels,trainingDataSet,attributes):
-    totalEntropy = calcTotalEntropy(labels,trainingDataSet,None)
+def calculateBestGainEntropy(labels,trainingDataSet,attributes):
+    totalEntropy = calcTotalEntropy(labels,trainingDataSet)
     #Optimization loop?
     # Rememeber attributes is a list of ints
     bestAttribute = attributes[0]
@@ -85,13 +106,42 @@ def calculateBestGain(labels,trainingDataSet,attributes):
         indexAttribute = indexAttribute + 1
     return (bestAttribute,bestValue)
 
-def calcTotalEntropy(labels,trainingDataSet,mathFunc):
+def calculateBestGainGini(labels,trainingDataSet,attributes):
+    totalGini = calcTotalGini(labels,trainingDataSet)
+    #Optimization loop?
+    # Rememeber attributes is a list of ints
+    bestAttribute = attributes[0]
+    bestValue = float('-inf')
+    #Keep track of the index of the atributeValues
+    indexAttribute = 0
+    for a in attributes:
+        print("calculating gain for attribute: " + str(a))
+        gain = totalGini - getGinniOfAllAttributeValues(indexAttribute,getAttributeValues(indexAttribute,trainingDataSet),labels,trainingDataSet)
+        print("Gain(S," + str(a) + ")" + " = " + str(gain))
+        if gain > bestValue:
+            bestAttribute = a
+            bestValue = gain
+        indexAttribute = indexAttribute + 1
+    return (bestAttribute,bestValue)
+
+def calcTotalEntropy(labels,trainingDataSet):
     sizeOfWholeSet = len(trainingDataSet)
     entropy = 0
     for label in labels:
         #print(str(getOccurancesOfLabelGivenAttirbuteTrainingDataSet(label,trainingDataSet)) + " /" + str(sizeOfWholeSet))
         entropy = entropy + math_helper.calcEntropy(getOccurancesOfLabelGivenAttirbuteTrainingDataSet(label,trainingDataSet)/sizeOfWholeSet)
     return entropy
+
+def calcTotalGini(labels,trainingDataSet):
+    sizeOfWholeSet = len(trainingDataSet)
+    #print("Set size is " + str(sizeOfWholeSet))
+    gini = 0
+    for label in labels:
+        #s = s + " + " + " "
+        #print(str(getOccurancesOfLabelGivenAttirbuteTrainingDataSet(label,trainingDataSet)) + " /" + str(sizeOfWholeSet))
+        gini = gini + math_helper.calcGiniIndex(getOccurancesOfLabelGivenAttirbuteTrainingDataSet(label,trainingDataSet)/sizeOfWholeSet)
+    #print("Gini index is 1 - " + s + " = " + str(1-gini))
+    return 1 - gini
 
 def getAttributeValues(attributeIndex,trainingDataSet):
     attributeValues = set()
@@ -132,7 +182,16 @@ if __name__ == '__main__':
     print("testCase9 getOccurancesOfLabelGivenAttirbuteTrainingDataSet Pass: " + str(getOccurancesOfLabelGivenAttirbuteTrainingDataSet('-',trainingData) == 5))
     print("testCase10 getOccurancesOfLabelGivenAttirbuteTrainingDataSet Pass: " + str(getOccurancesOfLabelGivenAttirbuteTrainingDataSet('+',trainingData) == 9))
     print("testCase11 math_helper.calcEntropy Pass: " + str(math_helper.calcEntropy(9/14) == 0.40977637753840174))
-    print("testCase12 calcTotalEntropy Pass: " + str(calcTotalEntropy(values,trainingData,None) == 0.9402859586706309))
+    print("testCase12 calcTotalEntropy Pass: " + str(calcTotalEntropy(values,trainingData) == 0.9402859586706309))
     print("testCase13 getCountOfLabelsGivenAttributeValue Pass: " + str(getCountOfLabelsGivenAttributeValue(1,'C',values,trainingData,getOccurrencesOfAttributeValue(1,'C',trainingData)) == [0.75, 0.25]))
     print("testCase14 calculateEntropyOfAttributeValue Pass: " + str(getEntropyOfAllAttributeValues(0,['O','R','S'],values,trainingData) == 0.6935361388961918))
-    print("testCase15 calculateBestGain Pass: " + str(calculateBestGain(values,trainingData,attributes) == ('O', 0.2467498197744391)))
+    print("testCase15 calculateBestGainEntropy Pass: " + str(calculateBestGainEntropy(values,trainingData,attributes) == ('O', 0.2467498197744391)))
+    #Gini tests, example from the lecture
+    giniData = []
+    for i in range(5):
+        giniData.append([1,"-"])
+    for i in range(15):
+        giniData.append([1,"+"])
+    print("testCase16 calcTotalGini Pass: " + str(calcTotalGini(values,giniData) == 3/8))
+    #Answer I got on the homework
+    print("testCase17 calculateBestGainGini Pass: " + str(calculateBestGainGini(values,trainingData,attributes) == ('O',0.11632653061224485)))

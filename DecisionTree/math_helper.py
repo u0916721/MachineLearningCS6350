@@ -15,9 +15,9 @@ def calcEntropy(val):
 def calcGiniIndex(val):
     return val * val
 
-#Calculates Gini Index
-def calcMajorityError():
-    return 69
+#Calculates majorityError
+def calcMajorityError(ratios):
+    return 1 - max(ratios)
 
 
 #Calculates InformationGain

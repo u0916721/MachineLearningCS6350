@@ -4,7 +4,7 @@ from node import node
 import sample_calc
     # We could make these generic and pass in a math function instead that calculates each of these but
     # optimize later, make changes if needed
-def createTreeInformationGainEntropy(depth,root: node):
+def createTreeInformationGainEntropy(depth,root: node,purityFunction):
         # Basecase
     #root.printNode()
     if depth == 0 or root.hasOnlyOneLabel():
@@ -14,7 +14,7 @@ def createTreeInformationGainEntropy(depth,root: node):
         # print()
         return
         #Next tasks find the attribute with the best information gain and split on this attribute
-    bestGain = sample_calc.calculateBestGainEntropy(root.labels,root.trainingDataSet,root.attributes)
+    bestGain = purityFunction(root.labels,root.trainingDataSet,root.attributes)
     #Then remove the split attribute from the data set, this is an expensive call, but optimize later
     attributeSplit = bestGain[0]
     #Assign it the current root as the attribute we split on
@@ -39,7 +39,7 @@ def createTreeInformationGainEntropy(depth,root: node):
     for c in root.children:
         # print(" Creating children for " + str(attributeSplit))
         # c.printNode()
-        createTreeInformationGainEntropy(depth -1,c)
+        createTreeInformationGainEntropy(depth -1,c,purityFunction)
     return 
 def createTreeMajorityError():
     return None
@@ -68,4 +68,4 @@ if __name__ == '__main__':
     trainingData.append(['O','H','N','W','+'])
     trainingData.append(['R','M','H','S','-'])
     testNode =  node(None,trainingData,attributes,attributeValues,values)
-    createTreeInformationGainEntropy(1,testNode)
+    createTreeInformationGainEntropy(1,testNode,sample_calc.calculateBestGainEntropy)

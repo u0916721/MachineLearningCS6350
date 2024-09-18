@@ -1,5 +1,6 @@
 # This class does stuff calculating values of the sample
 import math_helper
+import copy
 
 #Gets |S|
 def getSizeofWholeSet(trainingDataSet):
@@ -201,6 +202,17 @@ def getAttributeValues(attributeIndex,trainingDataSet):
         attributeValues.add(sample[attributeIndex])
         
     return list(attributeValues)
+def getIndexOfAttribute(attribute, attributes):
+    for i in range(len(attributes)):
+        if attributes[i] == attribute:
+            return i  
+    return -1
+def removeAttributeFromTrainingDataSet(attribute,trainingDataSet):
+    trainingDataSetWithRemoved = copy.deepcopy(trainingDataSet)
+    for sample in trainingDataSetWithRemoved:
+        sample.pop(attribute)
+    return trainingDataSetWithRemoved
+            
 
 if __name__ == '__main__':
     #Main funcion of this file runs a bunch of simple tests
@@ -252,3 +264,20 @@ if __name__ == '__main__':
     print("testCase19 calcTotalMajorityError Pass: " + str(calcTotalME(values,trainingData) == 0.3571428571428571))
     #Calculate best gain ME
     print("testCase20 calculateBestGainME Pass: " + str(calculateBestGainME(values,trainingData,attributes) == ('O', 0.07142857142857134)))
+    print("testCase21 getIndexOfAttribute Pass: " + str(getIndexOfAttribute('H',attributes) == 2))
+    trainingData2 = []
+    trainingData2.append(['S','H','W','-'])
+    trainingData2.append(['S','H','S','-'])
+    trainingData2.append(['O','H','W','+'])
+    trainingData2.append(['R','M','W','+'])
+    trainingData2.append(['R','C','W','+'])
+    trainingData2.append(['R','C','S','-'])
+    trainingData2.append(['O','C','S','+'])
+    trainingData2.append(['S','M','W','-'])
+    trainingData2.append(['S','C','W','+'])
+    trainingData2.append(['R','M','W','+'])
+    trainingData2.append(['S','M','S','+'])
+    trainingData2.append(['O','M','S','+'])
+    trainingData2.append(['O','H','W','+'])
+    trainingData2.append(['R','M','S','-'])
+    print("testCase22 testRemove Pass: " + str(trainingData2 == removeAttributeFromTrainingDataSet(getIndexOfAttribute('H',attributes),trainingData)))

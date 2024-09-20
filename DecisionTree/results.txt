@@ -51,3 +51,12 @@ Training Data
 Entropy with Unkown Replaced Percentage is 0.9520875
 Gini with Unkown Replaced Percentage is 0.9524125
 Majority Error with Unkown Replaced Percentage is 0.9409125
+
+What can you conclude by comparing the training errors and the test
+errors, with different tree depths, as well as different ways to deal with ”unknown”
+attribute values?
+In this case when testing with the testing data, the error rate is actually worse, sometimes less is more, and in this
+case, the training data might be poor or biased and thus when exposed to the training data when a full tree is built the results are bad.
+However when we constrast the accuracy and tree depths to when we test again the training data we notice that the accuracy gets better
+this makes sense as the tree is trained on this data and is the able to better correctly perdicts it. In terms of dealing with unkown, leaving it as unkown yeilds slightly 
+better results about + .001 percent better, I dont know if that is meaningful but still we see that leaving it as is yeilds better results

@@ -52,8 +52,8 @@ class node:
         return True
     
     def printNode(self):
-        print("Attribute split from is " + str(self.splitValue)+ " and is split from attribute " + str(self.splitAttribute) + " Training DataSet is " + str(self.trainingDataSet) + " Majority Label is " + str(self.label))
-        print("Children are " + str(self.children))
+        print("Attribute split from is " + str(self.splitValue)+ " and is split from attribute " + str(self.splitAttribute) + " Majority Label is " + str(self.label))
+        print("Total children are  " + str(len(self.children)))
              
             
             

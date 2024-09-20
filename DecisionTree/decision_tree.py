@@ -6,11 +6,12 @@ import sample_calc
     # optimize later, make changes if needed
 def createTreeInformationGainEntropy(depth,root: node,purityFunction):
         # Basecase
-    # root.printNode()
-    if depth == 0 or root.hasOnlyOneLabel():
+
+    # len(root.attrinutes) case needed for two sample that are indentical aside from their label
+    if depth == 0 or root is None or root.hasOnlyOneLabel() or len(root.attributes) == 1:
         # print()
         # print("basecase reached leaf node is below ")
-        #root.printNode()
+        # root.printNode()
         # print()
         return
         #Next tasks find the attribute with the best information gain and split on this attribute
@@ -40,6 +41,7 @@ def createTreeInformationGainEntropy(depth,root: node,purityFunction):
         # print(" Creating children for " + str(attributeSplit))
         # c.printNode()
         createTreeInformationGainEntropy(depth -1,c,purityFunction)
+    #root.printNode()
     return 
 def perdict(tree: node, sample):
     #Basecase
@@ -97,7 +99,7 @@ if __name__ == '__main__':
     trainingData.append(['O','H','N','W','+'])
     trainingData.append(['R','M','H','S','-'])
     testNode =  node(None,trainingData,attributes,attributeValues,values)
-    createTreeInformationGainEntropy(6,testNode,sample_calc.calculateBestGainME)
+    createTreeInformationGainEntropy(90000000,testNode,sample_calc.calculateBestGainME)
     #print(str(perdict(testNode,['S','H','H','W','-'])))
     print("testCase0 perdict Pass: " + str(perdict(testNode,['S','H','H','W','-']) == '-'))
     print("testCase1 perdict Pass: " + str(perdict(testNode,['S','H','H','S','-']) == '-'))

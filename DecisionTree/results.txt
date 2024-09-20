@@ -1,0 +1,53 @@
+Use your implemented algorithm to learn decision trees from the
+training data. Vary the maximum tree depth from 1 to 6 — for each setting,
+run your algorithm to learn a decision tree, and use the tree to predict both the
+training and test examples. Note that if your tree cannot grow up to 6 levels, you
+can stop at the maximum level. Report in a table the average prediction errors
+on each dataset when you use information gain, majority error and gini index
+heuristics, respectively
+Entropy Perecentage is 0.8269230769230771
+Gini Index Perecentage is 0.8312728937728938
+Majority Error Perecentage is 0.7937271062271062
+Training data
+Entropy Perecentage is 0.8598333333333333
+Gini Index Perecentage is 0.8595
+Majority Error Perecentage is 0.8383333333333335
+Part (c):What can you conclude by comparing the training errors and the test
+errors?
+When comparing training errors and test errors, running against the training data result in fewer errors as we have already seen that
+data before and thus our tree is "preconditioned" to have fewer errors, where as our tree has not seen some of the test samples and as such
+is more likely to get something wrong
+
+
+
+
+
+Let us consider “unknown” as a particular attribute value, and hence
+we do not have any missing attributes for both training and test. Vary the
+maximum tree depth from 1 to 16 — for each setting, run your algorithm to learn
+a decision tree, and use the tree to predict both the training and test examples.
+Again, if your tree cannot grow up to 16 levels, stop at the maximum level. Report
+in a table the average prediction errors on each dataset when you use information
+gain, majority error and gini index heuristics, respectively
+Entropy Percentage is 0.8620749999999999
+Gini Index Percentage is 0.8580750000000001
+Majority Error Percentage is 0.86475
+Traning Data 
+Entropy Percentage is 0.9558625000000002
+Gini Index Percentage is 0.9578625000000001
+Majority Error Percentage is 0.9456249999999999
+
+Let us consider ”unknown” as attribute value missing. Here we
+simply complete it with the majority of other values of the same attribute in the
+training set. Vary the maximum tree depth from 1 to 16 — for each setting,
+run your algorithm to learn a decision tree, and use the tree to predict both the
+training and test examples. Report in a table the average prediction errors on each
+dataset when you use information gain, majority error and gini index heuristics,
+respectively.
+Entropy with Unkown Replaced Percentage is 0.8625125
+Gini with Unkown Replaced Percentage is 0.8608625000000002
+Majority Error with Unkown Replaced Percentage is 0.8692375
+Training Data
+Entropy with Unkown Replaced Percentage is 0.9520875
+Gini with Unkown Replaced Percentage is 0.9524125
+Majority Error with Unkown Replaced Percentage is 0.9409125

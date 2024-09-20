@@ -1,0 +1,250 @@
+Car data decision tree being built and run against with test data
+Using ID3 Method Entropy For depth of 1 Total correct guesses is 512 out of 728 Percent is 70.32967032967034
+Using ID3 Method Entropy For depth of 2 Total correct guesses is 566 out of 728 Percent is 77.74725274725274
+Using ID3 Method Entropy For depth of 3 Total correct guesses is 585 out of 728 Percent is 80.35714285714286
+Using ID3 Method Entropy For depth of 4 Total correct guesses is 621 out of 728 Percent is 85.3021978021978
+Using ID3 Method Entropy For depth of 5 Total correct guesses is 664 out of 728 Percent is 91.20879120879121
+Using ID3 Method Entropy For depth of 6 Total correct guesses is 664 out of 728 Percent is 91.20879120879121
+Using ID3 Method Gini For depth of 1 Total correct guesses is 512 out of 728 Percent is 70.32967032967034
+Using ID3 Method Gini For depth of 2 Total correct guesses is 566 out of 728 Percent is 77.74725274725274
+Using ID3 Method Gini For depth of 3 Total correct guesses is 594 out of 728 Percent is 81.5934065934066
+Using ID3 Method Gini For depth of 4 Total correct guesses is 631 out of 728 Percent is 86.67582417582418
+Using ID3 Method Gini For depth of 5 Total correct guesses is 664 out of 728 Percent is 91.20879120879121
+Using ID3 Method Gini For depth of 6 Total correct guesses is 664 out of 728 Percent is 91.20879120879121
+Using ID3 Method Majority Error For depth of 1 Total correct guesses is 512 out of 728 Percent is 70.32967032967034
+Using ID3 Method Majority Error For depth of 2 Total correct guesses is 500 out of 728 Percent is 68.68131868131869
+Using ID3 Method Majority Error For depth of 3 Total correct guesses is 574 out of 728 Percent is 78.84615384615384
+Using ID3 Method Majority Error For depth of 4 Total correct guesses is 603 out of 728 Percent is 82.82967032967034
+Using ID3 Method Majority Error For depth of 5 Total correct guesses is 639 out of 728 Percent is 87.77472527472527
+Using ID3 Method Majority Error For depth of 6 Total correct guesses is 639 out of 728 Percent is 87.77472527472527
+Entropy Perecentage is 0.8269230769230771
+Gini Index Perecentage is 0.8312728937728938
+Majority Error Perecentage is 0.7937271062271062
+Car data decision tree being built and run against with training data
+Using ID3 Method Entropy For depth of 1 Total correct guesses is 698 out of 1000 Percent is 69.8
+Using ID3 Method Entropy For depth of 2 Total correct guesses is 778 out of 1000 Percent is 77.8
+Using ID3 Method Entropy For depth of 3 Total correct guesses is 819 out of 1000 Percent is 81.89999999999999
+Using ID3 Method Entropy For depth of 4 Total correct guesses is 918 out of 1000 Percent is 91.8
+Using ID3 Method Entropy For depth of 5 Total correct guesses is 973 out of 1000 Percent is 97.3
+Using ID3 Method Entropy For depth of 6 Total correct guesses is 973 out of 1000 Percent is 97.3
+Using ID3 Method Gini For depth of 1 Total correct guesses is 698 out of 1000 Percent is 69.8
+Using ID3 Method Gini For depth of 2 Total correct guesses is 778 out of 1000 Percent is 77.8
+Using ID3 Method Gini For depth of 3 Total correct guesses is 824 out of 1000 Percent is 82.39999999999999
+Using ID3 Method Gini For depth of 4 Total correct guesses is 911 out of 1000 Percent is 91.10000000000001
+Using ID3 Method Gini For depth of 5 Total correct guesses is 973 out of 1000 Percent is 97.3
+Using ID3 Method Gini For depth of 6 Total correct guesses is 973 out of 1000 Percent is 97.3
+Using ID3 Method Majority Error For depth of 1 Total correct guesses is 698 out of 1000 Percent is 69.8
+Using ID3 Method Majority Error For depth of 2 Total correct guesses is 708 out of 1000 Percent is 70.8
+Using ID3 Method Majority Error For depth of 3 Total correct guesses is 807 out of 1000 Percent is 80.7
+Using ID3 Method Majority Error For depth of 4 Total correct guesses is 889 out of 1000 Percent is 88.9
+Using ID3 Method Majority Error For depth of 5 Total correct guesses is 964 out of 1000 Percent is 96.39999999999999
+Using ID3 Method Majority Error For depth of 6 Total correct guesses is 964 out of 1000 Percent is 96.39999999999999
+Entropy Perecentage is 0.8598333333333333
+Gini Index Perecentage is 0.8595
+Majority Error Perecentage is 0.8383333333333335
+Bank decision tree being built and run against with test data
+Using ID3 Method Entropy For depth of 1 Total correct guesses is 4404 out of 5000 Percent is 88.08
+Using ID3 Method Entropy For depth of 2 Total correct guesses is 4441 out of 5000 Percent is 88.82
+Using ID3 Method Entropy For depth of 3 Total correct guesses is 4461 out of 5000 Percent is 89.22
+Using ID3 Method Entropy For depth of 4 Total correct guesses is 4446 out of 5000 Percent is 88.92
+Using ID3 Method Entropy For depth of 5 Total correct guesses is 4383 out of 5000 Percent is 87.66000000000001
+Using ID3 Method Entropy For depth of 6 Total correct guesses is 4348 out of 5000 Percent is 86.96000000000001
+Using ID3 Method Entropy For depth of 7 Total correct guesses is 4320 out of 5000 Percent is 86.4
+Using ID3 Method Entropy For depth of 8 Total correct guesses is 4269 out of 5000 Percent is 85.38
+Using ID3 Method Entropy For depth of 9 Total correct guesses is 4255 out of 5000 Percent is 85.1
+Using ID3 Method Entropy For depth of 10 Total correct guesses is 4241 out of 5000 Percent is 84.82
+Using ID3 Method Entropy For depth of 11 Total correct guesses is 4237 out of 5000 Percent is 84.74000000000001
+Using ID3 Method Entropy For depth of 12 Total correct guesses is 4232 out of 5000 Percent is 84.64
+Using ID3 Method Entropy For depth of 13 Total correct guesses is 4233 out of 5000 Percent is 84.66
+Using ID3 Method Entropy For depth of 14 Total correct guesses is 4232 out of 5000 Percent is 84.64
+Using ID3 Method Entropy For depth of 15 Total correct guesses is 4232 out of 5000 Percent is 84.64
+Using ID3 Method Entropy For depth of 16 Total correct guesses is 4232 out of 5000 Percent is 84.64
+Using ID3 Method Gini For depth of 1 Total correct guesses is 4456 out of 5000 Percent is 89.12
+Using ID3 Method Gini For depth of 2 Total correct guesses is 4472 out of 5000 Percent is 89.44
+Using ID3 Method Gini For depth of 3 Total correct guesses is 4441 out of 5000 Percent is 88.82
+Using ID3 Method Gini For depth of 4 Total correct guesses is 4407 out of 5000 Percent is 88.14
+Using ID3 Method Gini For depth of 5 Total correct guesses is 4357 out of 5000 Percent is 87.14
+Using ID3 Method Gini For depth of 6 Total correct guesses is 4321 out of 5000 Percent is 86.42
+Using ID3 Method Gini For depth of 7 Total correct guesses is 4278 out of 5000 Percent is 85.56
+Using ID3 Method Gini For depth of 8 Total correct guesses is 4242 out of 5000 Percent is 84.84
+Using ID3 Method Gini For depth of 9 Total correct guesses is 4227 out of 5000 Percent is 84.54
+Using ID3 Method Gini For depth of 10 Total correct guesses is 4224 out of 5000 Percent is 84.48
+Using ID3 Method Gini For depth of 11 Total correct guesses is 4211 out of 5000 Percent is 84.22
+Using ID3 Method Gini For depth of 12 Total correct guesses is 4201 out of 5000 Percent is 84.02
+Using ID3 Method Gini For depth of 13 Total correct guesses is 4203 out of 5000 Percent is 84.06
+Using ID3 Method Gini For depth of 14 Total correct guesses is 4202 out of 5000 Percent is 84.04
+Using ID3 Method Gini For depth of 15 Total correct guesses is 4202 out of 5000 Percent is 84.04
+Using ID3 Method Gini For depth of 16 Total correct guesses is 4202 out of 5000 Percent is 84.04
+Using ID3 Method Majority Error For depth of 1 Total correct guesses is 4456 out of 5000 Percent is 89.12
+Using ID3 Method Majority Error For depth of 2 Total correct guesses is 4472 out of 5000 Percent is 89.44
+Using ID3 Method Majority Error For depth of 3 Total correct guesses is 4442 out of 5000 Percent is 88.84
+Using ID3 Method Majority Error For depth of 4 Total correct guesses is 4412 out of 5000 Percent is 88.24
+Using ID3 Method Majority Error For depth of 5 Total correct guesses is 4378 out of 5000 Percent is 87.56
+Using ID3 Method Majority Error For depth of 6 Total correct guesses is 4359 out of 5000 Percent is 87.18
+Using ID3 Method Majority Error For depth of 7 Total correct guesses is 4344 out of 5000 Percent is 86.88
+Using ID3 Method Majority Error For depth of 8 Total correct guesses is 4329 out of 5000 Percent is 86.58
+Using ID3 Method Majority Error For depth of 9 Total correct guesses is 4317 out of 5000 Percent is 86.33999999999999
+Using ID3 Method Majority Error For depth of 10 Total correct guesses is 4294 out of 5000 Percent is 85.88
+Using ID3 Method Majority Error For depth of 11 Total correct guesses is 4269 out of 5000 Percent is 85.38
+Using ID3 Method Majority Error For depth of 12 Total correct guesses is 4246 out of 5000 Percent is 84.92
+Using ID3 Method Majority Error For depth of 13 Total correct guesses is 4230 out of 5000 Percent is 84.6
+Using ID3 Method Majority Error For depth of 14 Total correct guesses is 4201 out of 5000 Percent is 84.02
+Using ID3 Method Majority Error For depth of 15 Total correct guesses is 4196 out of 5000 Percent is 83.91999999999999
+Using ID3 Method Majority Error For depth of 16 Total correct guesses is 4196 out of 5000 Percent is 83.91999999999999
+Using ID3 Method Entropy For depth of 1 Total correct guesses is 4404 out of 5000 Percent is 88.08
+Using ID3 Method Entropy For depth of 2 Total correct guesses is 4441 out of 5000 Percent is 88.82
+Using ID3 Method Entropy For depth of 3 Total correct guesses is 4462 out of 5000 Percent is 89.24
+Using ID3 Method Entropy For depth of 4 Total correct guesses is 4436 out of 5000 Percent is 88.72
+Using ID3 Method Entropy For depth of 5 Total correct guesses is 4398 out of 5000 Percent is 87.96000000000001
+Using ID3 Method Entropy For depth of 6 Total correct guesses is 4366 out of 5000 Percent is 87.32
+Using ID3 Method Entropy For depth of 7 Total correct guesses is 4304 out of 5000 Percent is 86.08
+Using ID3 Method Entropy For depth of 8 Total correct guesses is 4274 out of 5000 Percent is 85.48
+Using ID3 Method Entropy For depth of 9 Total correct guesses is 4263 out of 5000 Percent is 85.26
+Using ID3 Method Entropy For depth of 10 Total correct guesses is 4244 out of 5000 Percent is 84.88
+Using ID3 Method Entropy For depth of 11 Total correct guesses is 4241 out of 5000 Percent is 84.82
+Using ID3 Method Entropy For depth of 12 Total correct guesses is 4239 out of 5000 Percent is 84.78
+Using ID3 Method Entropy For depth of 13 Total correct guesses is 4233 out of 5000 Percent is 84.66
+Using ID3 Method Entropy For depth of 14 Total correct guesses is 4232 out of 5000 Percent is 84.64
+Using ID3 Method Entropy For depth of 15 Total correct guesses is 4232 out of 5000 Percent is 84.64
+Using ID3 Method Entropy For depth of 16 Total correct guesses is 4232 out of 5000 Percent is 84.64
+Using ID3 Method Gini For depth of 1 Total correct guesses is 4456 out of 5000 Percent is 89.12
+Using ID3 Method Gini For depth of 2 Total correct guesses is 4469 out of 5000 Percent is 89.38000000000001
+Using ID3 Method Gini For depth of 3 Total correct guesses is 4445 out of 5000 Percent is 88.9
+Using ID3 Method Gini For depth of 4 Total correct guesses is 4430 out of 5000 Percent is 88.6
+Using ID3 Method Gini For depth of 5 Total correct guesses is 4400 out of 5000 Percent is 88.0
+Using ID3 Method Gini For depth of 6 Total correct guesses is 4368 out of 5000 Percent is 87.36
+Using ID3 Method Gini For depth of 7 Total correct guesses is 4310 out of 5000 Percent is 86.2
+Using ID3 Method Gini For depth of 8 Total correct guesses is 4240 out of 5000 Percent is 84.8
+Using ID3 Method Gini For depth of 9 Total correct guesses is 4237 out of 5000 Percent is 84.74000000000001
+Using ID3 Method Gini For depth of 10 Total correct guesses is 4230 out of 5000 Percent is 84.6
+Using ID3 Method Gini For depth of 11 Total correct guesses is 4222 out of 5000 Percent is 84.44
+Using ID3 Method Gini For depth of 12 Total correct guesses is 4221 out of 5000 Percent is 84.42
+Using ID3 Method Gini For depth of 13 Total correct guesses is 4211 out of 5000 Percent is 84.22
+Using ID3 Method Gini For depth of 14 Total correct guesses is 4210 out of 5000 Percent is 84.2
+Using ID3 Method Gini For depth of 15 Total correct guesses is 4210 out of 5000 Percent is 84.2
+Using ID3 Method Gini For depth of 16 Total correct guesses is 4210 out of 5000 Percent is 84.2
+Using ID3 Method Majority Error For depth of 1 Total correct guesses is 4456 out of 5000 Percent is 89.12
+Using ID3 Method Majority Error For depth of 2 Total correct guesses is 4469 out of 5000 Percent is 89.38000000000001
+Using ID3 Method Majority Error For depth of 3 Total correct guesses is 4442 out of 5000 Percent is 88.84
+Using ID3 Method Majority Error For depth of 4 Total correct guesses is 4422 out of 5000 Percent is 88.44
+Using ID3 Method Majority Error For depth of 5 Total correct guesses is 4410 out of 5000 Percent is 88.2
+Using ID3 Method Majority Error For depth of 6 Total correct guesses is 4403 out of 5000 Percent is 88.06
+Using ID3 Method Majority Error For depth of 7 Total correct guesses is 4391 out of 5000 Percent is 87.82
+Using ID3 Method Majority Error For depth of 8 Total correct guesses is 4370 out of 5000 Percent is 87.4
+Using ID3 Method Majority Error For depth of 9 Total correct guesses is 4343 out of 5000 Percent is 86.86
+Using ID3 Method Majority Error For depth of 10 Total correct guesses is 4335 out of 5000 Percent is 86.7
+Using ID3 Method Majority Error For depth of 11 Total correct guesses is 4295 out of 5000 Percent is 85.9
+Using ID3 Method Majority Error For depth of 12 Total correct guesses is 4275 out of 5000 Percent is 85.5
+Using ID3 Method Majority Error For depth of 13 Total correct guesses is 4246 out of 5000 Percent is 84.92
+Using ID3 Method Majority Error For depth of 14 Total correct guesses is 4230 out of 5000 Percent is 84.6
+Using ID3 Method Majority Error For depth of 15 Total correct guesses is 4211 out of 5000 Percent is 84.22
+Using ID3 Method Majority Error For depth of 16 Total correct guesses is 4211 out of 5000 Percent is 84.22
+Entropy Percentage is 0.8620749999999999
+Gini Index Percentage is 0.8580750000000001
+Majority Error Percentage is 0.8642625
+Entropy with Unkown Replaced Percentage is 0.8625125
+Gini with Unkown Replaced Percentage is 0.8608625000000002
+Majority Error with Unkown Replaced Percentage is 0.8688625
+Bank decision tree being built and run against with training data
+Using ID3 Method Entropy For depth of 1 Total correct guesses is 4376 out of 5000 Percent is 87.52
+Using ID3 Method Entropy For depth of 2 Total correct guesses is 4426 out of 5000 Percent is 88.52
+Using ID3 Method Entropy For depth of 3 Total correct guesses is 4518 out of 5000 Percent is 90.36
+Using ID3 Method Entropy For depth of 4 Total correct guesses is 4595 out of 5000 Percent is 91.9
+Using ID3 Method Entropy For depth of 5 Total correct guesses is 4686 out of 5000 Percent is 93.72
+Using ID3 Method Entropy For depth of 6 Total correct guesses is 4761 out of 5000 Percent is 95.22
+Using ID3 Method Entropy For depth of 7 Total correct guesses is 4824 out of 5000 Percent is 96.48
+Using ID3 Method Entropy For depth of 8 Total correct guesses is 4867 out of 5000 Percent is 97.34
+Using ID3 Method Entropy For depth of 9 Total correct guesses is 4899 out of 5000 Percent is 97.98
+Using ID3 Method Entropy For depth of 10 Total correct guesses is 4919 out of 5000 Percent is 98.38
+Using ID3 Method Entropy For depth of 11 Total correct guesses is 4930 out of 5000 Percent is 98.6
+Using ID3 Method Entropy For depth of 12 Total correct guesses is 4932 out of 5000 Percent is 98.64
+Using ID3 Method Entropy For depth of 13 Total correct guesses is 4934 out of 5000 Percent is 98.68
+Using ID3 Method Entropy For depth of 14 Total correct guesses is 4934 out of 5000 Percent is 98.68
+Using ID3 Method Entropy For depth of 15 Total correct guesses is 4934 out of 5000 Percent is 98.68
+Using ID3 Method Entropy For depth of 16 Total correct guesses is 4934 out of 5000 Percent is 98.68
+Using ID3 Method Gini For depth of 1 Total correct guesses is 4417 out of 5000 Percent is 88.34
+Using ID3 Method Gini For depth of 2 Total correct guesses is 4461 out of 5000 Percent is 89.22
+Using ID3 Method Gini For depth of 3 Total correct guesses is 4535 out of 5000 Percent is 90.7
+Using ID3 Method Gini For depth of 4 Total correct guesses is 4614 out of 5000 Percent is 92.28
+Using ID3 Method Gini For depth of 5 Total correct guesses is 4708 out of 5000 Percent is 94.16
+Using ID3 Method Gini For depth of 6 Total correct guesses is 4775 out of 5000 Percent is 95.5
+Using ID3 Method Gini For depth of 7 Total correct guesses is 4827 out of 5000 Percent is 96.54
+Using ID3 Method Gini For depth of 8 Total correct guesses is 4871 out of 5000 Percent is 97.42
+Using ID3 Method Gini For depth of 9 Total correct guesses is 4903 out of 5000 Percent is 98.06
+Using ID3 Method Gini For depth of 10 Total correct guesses is 4920 out of 5000 Percent is 98.4
+Using ID3 Method Gini For depth of 11 Total correct guesses is 4929 out of 5000 Percent is 98.58
+Using ID3 Method Gini For depth of 12 Total correct guesses is 4933 out of 5000 Percent is 98.66
+Using ID3 Method Gini For depth of 13 Total correct guesses is 4934 out of 5000 Percent is 98.68
+Using ID3 Method Gini For depth of 14 Total correct guesses is 4934 out of 5000 Percent is 98.68
+Using ID3 Method Gini For depth of 15 Total correct guesses is 4934 out of 5000 Percent is 98.68
+Using ID3 Method Gini For depth of 16 Total correct guesses is 4934 out of 5000 Percent is 98.68
+Using ID3 Method Majority Error For depth of 1 Total correct guesses is 4417 out of 5000 Percent is 88.34
+Using ID3 Method Majority Error For depth of 2 Total correct guesses is 4461 out of 5000 Percent is 89.22
+Using ID3 Method Majority Error For depth of 3 Total correct guesses is 4538 out of 5000 Percent is 90.75999999999999
+Using ID3 Method Majority Error For depth of 4 Total correct guesses is 4604 out of 5000 Percent is 92.08
+Using ID3 Method Majority Error For depth of 5 Total correct guesses is 4670 out of 5000 Percent is 93.4
+Using ID3 Method Majority Error For depth of 6 Total correct guesses is 4707 out of 5000 Percent is 94.14
+Using ID3 Method Majority Error For depth of 7 Total correct guesses is 4722 out of 5000 Percent is 94.44
+Using ID3 Method Majority Error For depth of 8 Total correct guesses is 4740 out of 5000 Percent is 94.8
+Using ID3 Method Majority Error For depth of 9 Total correct guesses is 4761 out of 5000 Percent is 95.22
+Using ID3 Method Majority Error For depth of 10 Total correct guesses is 4782 out of 5000 Percent is 95.64
+Using ID3 Method Majority Error For depth of 11 Total correct guesses is 4815 out of 5000 Percent is 96.3
+Using ID3 Method Majority Error For depth of 12 Total correct guesses is 4841 out of 5000 Percent is 96.82
+Using ID3 Method Majority Error For depth of 13 Total correct guesses is 4884 out of 5000 Percent is 97.68
+Using ID3 Method Majority Error For depth of 14 Total correct guesses is 4903 out of 5000 Percent is 98.06
+Using ID3 Method Majority Error For depth of 15 Total correct guesses is 4922 out of 5000 Percent is 98.44000000000001
+Using ID3 Method Majority Error For depth of 16 Total correct guesses is 4922 out of 5000 Percent is 98.44000000000001
+Using ID3 Method Entropy For depth of 1 Total correct guesses is 4376 out of 5000 Percent is 87.52
+Using ID3 Method Entropy For depth of 2 Total correct guesses is 4426 out of 5000 Percent is 88.52
+Using ID3 Method Entropy For depth of 3 Total correct guesses is 4522 out of 5000 Percent is 90.44
+Using ID3 Method Entropy For depth of 4 Total correct guesses is 4578 out of 5000 Percent is 91.56
+Using ID3 Method Entropy For depth of 5 Total correct guesses is 4661 out of 5000 Percent is 93.22
+Using ID3 Method Entropy For depth of 6 Total correct guesses is 4727 out of 5000 Percent is 94.54
+Using ID3 Method Entropy For depth of 7 Total correct guesses is 4788 out of 5000 Percent is 95.76
+Using ID3 Method Entropy For depth of 8 Total correct guesses is 4839 out of 5000 Percent is 96.78
+Using ID3 Method Entropy For depth of 9 Total correct guesses is 4868 out of 5000 Percent is 97.36
+Using ID3 Method Entropy For depth of 10 Total correct guesses is 4898 out of 5000 Percent is 97.96000000000001
+Using ID3 Method Entropy For depth of 11 Total correct guesses is 4908 out of 5000 Percent is 98.16
+Using ID3 Method Entropy For depth of 12 Total correct guesses is 4912 out of 5000 Percent is 98.24000000000001
+Using ID3 Method Entropy For depth of 13 Total correct guesses is 4916 out of 5000 Percent is 98.32
+Using ID3 Method Entropy For depth of 14 Total correct guesses is 4916 out of 5000 Percent is 98.32
+Using ID3 Method Entropy For depth of 15 Total correct guesses is 4916 out of 5000 Percent is 98.32
+Using ID3 Method Entropy For depth of 16 Total correct guesses is 4916 out of 5000 Percent is 98.32
+Using ID3 Method Gini For depth of 1 Total correct guesses is 4417 out of 5000 Percent is 88.34
+Using ID3 Method Gini For depth of 2 Total correct guesses is 4460 out of 5000 Percent is 89.2
+Using ID3 Method Gini For depth of 3 Total correct guesses is 4505 out of 5000 Percent is 90.10000000000001
+Using ID3 Method Gini For depth of 4 Total correct guesses is 4581 out of 5000 Percent is 91.62
+Using ID3 Method Gini For depth of 5 Total correct guesses is 4664 out of 5000 Percent is 93.28
+Using ID3 Method Gini For depth of 6 Total correct guesses is 4720 out of 5000 Percent is 94.39999999999999
+Using ID3 Method Gini For depth of 7 Total correct guesses is 4773 out of 5000 Percent is 95.46
+Using ID3 Method Gini For depth of 8 Total correct guesses is 4828 out of 5000 Percent is 96.56
+Using ID3 Method Gini For depth of 9 Total correct guesses is 4869 out of 5000 Percent is 97.38
+Using ID3 Method Gini For depth of 10 Total correct guesses is 4897 out of 5000 Percent is 97.94
+Using ID3 Method Gini For depth of 11 Total correct guesses is 4905 out of 5000 Percent is 98.1
+Using ID3 Method Gini For depth of 12 Total correct guesses is 4910 out of 5000 Percent is 98.2
+Using ID3 Method Gini For depth of 13 Total correct guesses is 4916 out of 5000 Percent is 98.32
+Using ID3 Method Gini For depth of 14 Total correct guesses is 4916 out of 5000 Percent is 98.32
+Using ID3 Method Gini For depth of 15 Total correct guesses is 4916 out of 5000 Percent is 98.32
+Using ID3 Method Gini For depth of 16 Total correct guesses is 4916 out of 5000 Percent is 98.32
+Using ID3 Method Majority Error For depth of 1 Total correct guesses is 4417 out of 5000 Percent is 88.34
+Using ID3 Method Majority Error For depth of 2 Total correct guesses is 4460 out of 5000 Percent is 89.2
+Using ID3 Method Majority Error For depth of 3 Total correct guesses is 4509 out of 5000 Percent is 90.18
+Using ID3 Method Majority Error For depth of 4 Total correct guesses is 4573 out of 5000 Percent is 91.46
+Using ID3 Method Majority Error For depth of 5 Total correct guesses is 4632 out of 5000 Percent is 92.64
+Using ID3 Method Majority Error For depth of 6 Total correct guesses is 4662 out of 5000 Percent is 93.24
+Using ID3 Method Majority Error For depth of 7 Total correct guesses is 4681 out of 5000 Percent is 93.62
+Using ID3 Method Majority Error For depth of 8 Total correct guesses is 4700 out of 5000 Percent is 94.0
+Using ID3 Method Majority Error For depth of 9 Total correct guesses is 4731 out of 5000 Percent is 94.62
+Using ID3 Method Majority Error For depth of 10 Total correct guesses is 4750 out of 5000 Percent is 95.0
+Using ID3 Method Majority Error For depth of 11 Total correct guesses is 4780 out of 5000 Percent is 95.6
+Using ID3 Method Majority Error For depth of 12 Total correct guesses is 4811 out of 5000 Percent is 96.22
+Using ID3 Method Majority Error For depth of 13 Total correct guesses is 4858 out of 5000 Percent is 97.16
+Using ID3 Method Majority Error For depth of 14 Total correct guesses is 4887 out of 5000 Percent is 97.74000000000001
+Using ID3 Method Majority Error For depth of 15 Total correct guesses is 4905 out of 5000 Percent is 98.1
+Using ID3 Method Majority Error For depth of 16 Total correct guesses is 4905 out of 5000 Percent is 98.1
+Entropy Percentage is 0.9558625000000002
+Gini Index Percentage is 0.9578625000000001
+Majority Error Percentage is 0.9461125
+Entropy with Unkown Replaced Percentage is 0.9520875
+Gini with Unkown Replaced Percentage is 0.9524125
+Majority Error with Unkown Replaced Percentage is 0.9407624999999998

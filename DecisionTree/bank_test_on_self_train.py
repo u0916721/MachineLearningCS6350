@@ -130,7 +130,7 @@ def runTest(depthOfTree,ID3Function,ID3FunctionName):
     n = node(None,trainingData,attributes,attributeValues,values)
     decision_tree.createTreeInformationGainEntropy(depthOfTree,n,ID3Function)
     totalRight = 0
-    for testSample in testData:
+    for testSample in trainingData:
         result = decision_tree.perdict(n,testSample)
         if result == testSample[len(testSample)-1]:
             totalRight = totalRight + 1
@@ -201,12 +201,12 @@ def runTestWithUnkownReplaced(depthOfTree,ID3Function,ID3FunctionName):
     n = node(None,trainingData,attributes,attributeValues,values)
     decision_tree.createTreeInformationGainEntropy(depthOfTree,n,ID3Function)
     totalRight = 0
-    for testSample in testData:
+    for testSample in trainingData:
         result = decision_tree.perdict(n,testSample)
         if result == testSample[len(testSample)-1]:
             totalRight = totalRight + 1
-    print("Using ID3 Method " + ID3FunctionName + " For depth of " + str(depthOfTree) + " Total correct guesses is " + str(totalRight) + " out of " + str(len(testData)) + " Percent is " + str((totalRight/len(testData)) * 100))
-    return totalRight/len(testData)
+    print("Using ID3 Method " + ID3FunctionName + " For depth of " + str(depthOfTree) + " Total correct guesses is " + str(totalRight) + " out of " + str(len(trainingData)) + " Percent is " + str((totalRight/len(trainingData)) * 100))
+    return totalRight/len(trainingData)
 if __name__ == "__main__":
     pArray = []
     total = 0

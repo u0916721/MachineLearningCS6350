@@ -229,6 +229,7 @@ if __name__ == "__main__":
     pArray.append("Majority Error Percentage is " + str(total/iDivide))
     total = 0
     iDivide = 0
+    print("Now running with Unkown Replaced")
     for i in range(1,17):
         total = total + runTestWithUnkownReplaced(i,sample_calc.calculateBestGainEntropy, "Entropy")
         iDivide = iDivide + 1

@@ -5,16 +5,11 @@ import sample_calc
     # We could make these generic and pass in a math function instead that calculates each of these but
     # optimize later, make changes if needed
 def createTreeInformationGainEntropy(depth,root: node,purityFunction):
-        # Basecase
-
+    # Basecase
     # len(root.attrinutes) case needed for two sample that are indentical aside from their label
     if depth == 0 or root is None or root.hasOnlyOneLabel() or len(root.attributes) == 1:
-        # print()
-        # print("basecase reached leaf node is below ")
-        # root.printNode()
-        # print()
         return
-        #Next tasks find the attribute with the best information gain and split on this attribute
+    #Next tasks find the attribute with the best information gain and split on this attribute
     bestGain = purityFunction(root.labels,root.trainingDataSet,root.attributes)
     #Then remove the split attribute from the data set, this is an expensive call, but optimize later
     attributeSplit = bestGain[0]

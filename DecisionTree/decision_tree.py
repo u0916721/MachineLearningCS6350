@@ -2,6 +2,35 @@
 # Probably could put this logic in main but for now might be simpler to extract, though idk
 from node import node
 import sample_calc
+
+#Creates a stump that splits on the attribute
+def createStump(root: node,attribute):
+    # Basecase
+    # len(root.attrinutes) case needed for two sample that are indentical aside from their label
+    #Next tasks find the attribute with the best information gain and split on this attribute
+    #Then remove the split attribute from the data set, this is an expensive call, but optimize later
+    attributeSplit = attribute
+    #Assign it the current root as the attribute we split on
+    root.splitAttribute = attributeSplit
+    #Next we create children
+    attributeValues = root.attributesValues[attributeSplit]
+    #print("Splitting on " + str(attributeSplit) + " Which had a gain of " + str(bestGain[1]) + " Which has attribute values " + str(attributeValues) + " and is indexed at " +str(sample_calc.getIndexOfAttribute(attributeSplit,root.attributes)))
+    # print("And has training data " + str(root.trainingDataSet))
+    for a in attributeValues:
+        trainingParition = sample_calc.partitionTrainingDataSetBasedOnAttributeValue(sample_calc.getIndexOfAttribute(attributeSplit,root.attributes),a,root.trainingDataSet)
+        if trainingParition:
+            # Remove attribute from trainingPartition
+
+            trainingParitionTemp = sample_calc.removeAttributeFromTrainingDataSet(sample_calc.getIndexOfAttribute(attributeSplit,root.attributes),trainingParition)
+            # print()
+            # print("*****")
+            # print(str(trainingParitionTemp))
+            # print("*****")
+            # print()
+            newAttributes = sample_calc.removeAttributeFromAttributeList(attributeSplit,root.attributes)
+            root.children.append(node(a,trainingParitionTemp,newAttributes,root.attributesValues,root.labels))
+    #root.printNode()
+    return 
     # We could make these generic and pass in a math function instead that calculates each of these but
     # optimize later, make changes if needed
 def createTreeInformationGainEntropy(depth,root: node,purityFunction):
@@ -125,4 +154,8 @@ if __name__ == '__main__':
     print("testCase25 perdict Pass: " + str(perdict(testNode,['O','M','H','S','-']) == '+'))
     print("testCase26 perdict Pass: " + str(perdict(testNode,['O','H','N','W','-']) == '+'))
     print("testCase27 perdict Pass: " + str(perdict(testNode,['R','M','H','S','+']) == '-'))
+    testNode =  node(None,trainingData,attributes,attributeValues,values)
+    # createStump(testNode,"T")
+    # testNode.printNode()
+    print
 

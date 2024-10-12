@@ -32,16 +32,20 @@ if __name__ == '__main__':
     #Make 100 stumps
     correct = 0
     wrong = 0
-    for n in c.createDeepCopyTrainingData():
-        # print(n)
-        s = decision_tree.perdict(t.rootNode,n)
-        if s == n[len(n)-1]:
-            correct = correct + 1
-        else:
-            wrong = wrong + 1
-    noTotal = 0
-    for n in c.createDeepCopyTrainingData():
-        if n[len(n)-1] == "no":
-            noTotal += 1
+    origData = c.createDeepCopyTrainingData()
+    for i in range(0,500):
+        print(i)
+        t = tree(origData,c.attributes,c.attributeValues,c.values,2)
+    # for n in c.createDeepCopyTrainingData():
+    #     # print(n)
+    #     s = decision_tree.perdict(t.rootNode,n)
+    #     if s == n[len(n)-1]:
+    #         correct = correct + 1
+    #     else:
+    #         wrong = wrong + 1
+    # noTotal = 0
+    # for n in c.createDeepCopyTrainingData():
+    #     if n[len(n)-1] == "no":
+    #         noTotal += 1
     noder = node(None,c.createDeepCopyTrainingData(),c.attributes,c.attributeValues,c.values)
     

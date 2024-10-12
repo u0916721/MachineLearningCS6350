@@ -54,10 +54,8 @@ def calcBestAttributeToSplitOn(attributes,attributeValuesDict,dataset,weightedSa
     bestAttribute = attributes[0]
     bestVal = float("-inf")
     totalEnt = getTotalEntropy(dataset,weightedSample)
-    print(totalEnt)
     for i in range(0,len(attributes) - 1):
         temp = calculateEntForEntireAttribute(i,attributeValuesDict[attributes[i]],dataset,weightedSample,attributes[i])
-        print(temp)
         tempV = totalEnt - temp[0]
         tempA = temp[1]
         

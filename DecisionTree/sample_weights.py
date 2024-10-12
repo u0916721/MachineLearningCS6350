@@ -9,11 +9,14 @@ def updateWeightsGivenMissClassifiedExamplesAndAmountOfSay(amountOfSay,missClass
     tDataArray = [] # of the form ([],normalized amount)
     for sample in trainingData:
         sample = tuple(sample)
+        print(sample)
         if sample in missClassfiedSamples:
             val = sampleWeights[sample] * math.exp(amountOfSay)
+            print(f"upweight is {val}")
             tDataArray.append((sample, val))
         else:
             val = sampleWeights[sample] * math.exp(-amountOfSay)
+            print(f"downweight is {val}")
             tDataArray.append((sample, val))
     # Next we normalize
     val = 0 
@@ -29,7 +32,7 @@ def updateWeightsGivenMissClassifiedExamplesAndAmountOfSay(amountOfSay,missClass
 # Very simply test
 def test1():
     amountOfSay = 0.5
-    missClassfiedSamples = [[1, 2], [3, 4]]
+    missClassfiedSamples = {(1, 2), (3, 4)}
     sampleWeights = {(1, 2): 0.1, (3, 4): 0.2, (5, 6): 0.7}
     trainingData = [[1, 2], [3, 4], [5, 6]]  
     updatedWeights = updateWeightsGivenMissClassifiedExamplesAndAmountOfSay(amountOfSay, missClassfiedSamples, sampleWeights, trainingData)
@@ -38,7 +41,7 @@ def test1():
 # Very simply test all wrong so that all get weighted equally
 def test2():
     amountOfSay = 0.9
-    missClassfiedSamples = [[1, 2], [3, 4],[5,6]]
+    missClassfiedSamples = {(1, 2), (3, 4)}
     sampleWeights = {(1, 2): 0.1, (3, 4): 0.2, (5, 6): 0.7}
     trainingData = [[1, 2], [3, 4], [5, 6]]  
     updatedWeights = updateWeightsGivenMissClassifiedExamplesAndAmountOfSay(amountOfSay, missClassfiedSamples, sampleWeights, trainingData)
@@ -46,7 +49,7 @@ def test2():
 # Very simply test all wrong so that all get weighted equally duplicate trainingData
 def test3():
     amountOfSay = 0.01
-    missClassfiedSamples = [[1, 2], [3, 4],[5,6]]
+    missClassfiedSamples = {(1, 2), (3, 4),(5,6)}
     sampleWeights = {(1, 2): 0.1, (3, 4): 0.1, (5, 6): 0.4}
     trainingData = [[1, 2], [3, 4], [5, 6],[5,6]]  
     #Because 0.4 * 2 = 0.8 + 0.1 + 0. 1 = 1
@@ -63,10 +66,20 @@ def test4():
     updatedWeights = updateWeightsGivenMissClassifiedExamplesAndAmountOfSay(amountOfSay, missClassfiedSamples, sampleWeights, trainingData)
     print("Test4 Updated Weights are", updatedWeights)
     
+# Very simply test all wrong so that all get weighted equally
+def test5():
+    amountOfSay = 0.97
+    missClassfiedSamples = {(1),(2),(3),(4),(5)}
+    sampleWeights = {(1): 0.1, (2): 0.1, (3): 0.1, (4) : 0.1 , (5) : 0.1}
+    trainingData = [[1], [2], [3],[4],[5]]  
+    updatedWeights = updateWeightsGivenMissClassifiedExamplesAndAmountOfSay(amountOfSay, missClassfiedSamples, sampleWeights, trainingData)
+    print("Test5 Updated Weights are", updatedWeights)
+    
 if __name__ == "__main__":
     #Simple test
     # test1()
     # test2()
-    test3()
-    test4()
+    # test3()
+    # test4()
+    test5()
     

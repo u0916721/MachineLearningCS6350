@@ -36,24 +36,39 @@ class stump:
         decision_tree.createStump(self.rootNode,attributeToSplitOn)
     #Return the amount of say along with the a dictionary of the misclassfied samples
     #This is so that their weights can be upweighted accordingly
-    def calculateTotalError(self,trainingData,sampleWeights):
+    def calculateTotalError(self):
         totalError = 0
         missClassfiedSamples = set()
-        for sample in trainingData:
+        for sample in self.trainingData:
             temp = self.perdict(copy.deepcopy(sample))
             perdiction = temp[0]
+            if perdiction== "yes":
+                exit()
+            #print(perdiction)
             if perdiction != sample[len(sample)-1]:
-                totalError += sampleWeights[tuple(sample)]
-                missClassfiedSamples.add(tuple(sample))
+                totalError += self.sampleWeights[tuple(sample)]
+                missClassfiedSamples.add(tuple(sample[:-1]))
         #We will set amount of say here because why not?
         #Some edge case to prevent dividing by zero
         if totalError == 0:
             totalError = 0.00000000001
-        print(totalError)
-        self.amountOfSay = 0.5 * math.log(((1 - totalError) / totalError) + 0.00001)
+       # print(f"total error is {totalError}")
+        exit()
+        self.amountOfSay = 0.5 * math.log((((1 - totalError) / totalError)))
         #Then we do something with this and update our weights accordingly
         #Sample weights may not be needed here but it could be usefull
         return (totalError,missClassfiedSamples,self.sampleWeights,self.amountOfSay)
+    
+    #Runs a perdiction given the data
+    def perdictAll(self,perdictData):
+        totalError = 0
+        missClassfiedSamples = set()
+        for sample in perdictData:
+            temp = self.perdict(copy.deepcopy(sample))
+            perdiction = temp[0]
+            if perdiction != sample[len(sample)-1]:
+                totalError += 1
+        return totalError/len(perdictData)
     #Returns its perdeiction with its amount of say it was given
     def perdict(self,sample):
         return (decision_tree.perdict(self.rootNode,sample),self.amountOfSay)
@@ -90,7 +105,7 @@ def test():
     total = 0
     for t in trainingData:
         d[tuple(t)] = 1/nillWeight
-    print(calcBestAttributeToSplitOn(attributes,attributeValueDict,trainingData,d))
+    #print(calcBestAttributeToSplitOn(attributes,attributeValueDict,trainingData,d))
     s = stump(attributes,attributeValueDict,trainingData,values,d) 
 if __name__ == '__main__':
     #Let write a test for a basic decision tree

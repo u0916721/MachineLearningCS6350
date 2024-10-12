@@ -70,8 +70,6 @@ def createTreeInformationGainEntropy(depth,root: node,purityFunction):
 def perdict(tree: node, sample):
     #Basecase
     # print()
-    # tree.printNode()
-    # print()
     if not tree.children:
         return tree.label
     #Get the tree split attibute, this is what we are splitting on

@@ -13,6 +13,7 @@ import sample_calc
 from data_cleaner import cleaner
 from entropy_stump import calcBestAttributeToSplitOn
 import math
+import copy
 class tree:
     #Constructor, creates a node, then creates a tree
     #Assuming that we are using GiniIndex for tree splits
@@ -35,28 +36,28 @@ class stump:
         decision_tree.createStump(self.rootNode,attributeToSplitOn)
     #Return the amount of say along with the a dictionary of the misclassfied samples
     #This is so that their weights can be upweighted accordingly
-    def calculateTotalError(self):
+    def calculateTotalError(self,trainingData,sampleWeights):
         totalError = 0
         missClassfiedSamples = set()
-        for sample in self.trainingData:
-            temp = self.perdict(sample)
+        for sample in trainingData:
+            temp = self.perdict(copy.deepcopy(sample))
             perdiction = temp[0]
             if perdiction != sample[len(sample)-1]:
-                totalError += self.sampleWeights[tuple(sample)]
-                missClassfiedSamples.add(sample)
+                totalError += sampleWeights[tuple(sample)]
+                missClassfiedSamples.add(tuple(sample))
         #We will set amount of say here because why not?
         #Some edge case to prevent dividing by zero
         if totalError == 0:
             totalError = 0.00000000001
+        print(totalError)
         self.amountOfSay = 0.5 * math.log(((1 - totalError) / totalError) + 0.00001)
         #Then we do something with this and update our weights accordingly
         #Sample weights may not be needed here but it could be usefull
         return (totalError,missClassfiedSamples,self.sampleWeights,self.amountOfSay)
-    #Returns its perdeiction with some value
+    #Returns its perdeiction with its amount of say it was given
     def perdict(self,sample):
         return (decision_tree.perdict(self.rootNode,sample),self.amountOfSay)
-            
-        
+   
     
 
 # Testing portion

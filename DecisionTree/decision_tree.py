@@ -67,6 +67,15 @@ def createTreeInformationGainEntropy(depth,root: node,purityFunction):
         createTreeInformationGainEntropy(depth -1,c,purityFunction)
     #root.printNode()
     return 
+def printTree(tree: node):
+    if not tree.children:
+        print(f" split from the attributeValue {tree.splitValue} tree majority label is {tree.label}")
+        print(f"its count of samples was {len(tree.trainingDataSet)}")
+    else:
+        print(f"splitting on {tree.splitAttribute} ")
+        print(f"its count of samples was {len(tree.trainingDataSet)}")
+        for c in tree.children:
+            printTree(c)
 def perdict(tree: node, sample):
     #Basecase
     # print()

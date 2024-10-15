@@ -16,8 +16,10 @@ def getTotalEntropy(dataSet,weightedSample):
     # if neg + pos != amountOfSamples:
     #     #Just some error checking idk
     #     exit()
-    posEnt = calcEntropy(pos/amountOfSamples)
-    negEnt = calcEntropy(neg/amountOfSamples)
+    posProb = pos / amountOfSamples
+    negProb = neg / amountOfSamples
+    # Calculate Gini Index
+    return 1 - (posProb**2 + negProb**2)
     return posEnt + negEnt
 def calculateEntOnAttributeAndAttributeValue(attribute,attributeValue,dataSet,weightedSample):
     pos = 0
@@ -29,16 +31,18 @@ def calculateEntOnAttributeAndAttributeValue(attribute,attributeValue,dataSet,we
             total += 1 * weightedSample[tuple(d)]
             if d[len(d)-1] == "yes":
                 pos += 1 * weightedSample[tuple(d)]
+                #print(weightedSample[tuple(d)])
             else:
                 neg += 1 * weightedSample[tuple(d)]
+                #print(weightedSample[tuple(d)])
     #Just some error checking 
     if pos == 0 or neg == 0:
         return ((0),total)
-    posEnt = calcEntropy(pos/total)
+    posProb = pos/total
+    #print(f"{posEnt} and pos is {pos} and total is {total}")
+    negProb = neg/total
     # print(f"{posEnt} and pos is {pos} and total is {total}")
-    negEnt = calcEntropy(neg/total)
-    # print(f"{posEnt} and pos is {pos} and total is {total}")
-    return ((posEnt + negEnt),total)
+    return ((1 - (((posProb+negProb)/total)*(posProb**2 + negProb**2))),total)
 
 def calculateEntForEntireAttribute(attribute,attributeValues,dataset,weightedSample,attributeName):
     total = len(dataset)
@@ -62,6 +66,22 @@ def calcBestAttributeToSplitOn(attributes,attributeValuesDict,dataset,weightedSa
         if tempV > bestVal:
             bestVal = tempV
             bestAttribute = tempA
+    #print(f"splitting on {bestAttribute} with value {bestVal}")
+    return (bestAttribute,bestVal)
+
+def calcWorstAttributeToSplitOn(attributes,attributeValuesDict,dataset,weightedSample):
+    bestAttribute = attributes[0]
+    bestVal = float("inf")
+    totalEnt = getTotalEntropy(dataset,weightedSample)
+    for i in range(0,len(attributes) - 1):
+        temp = calculateEntForEntireAttribute(i,attributeValuesDict[attributes[i]],dataset,weightedSample,attributes[i])
+        tempV = totalEnt - temp[0]
+        tempA = temp[1]
+        
+        if tempV < bestVal:
+            bestVal = tempV
+            bestAttribute = tempA
+    #print(f"splitting on {bestAttribute} with value {bestVal}")
     return (bestAttribute,bestVal)
 
 
@@ -93,8 +113,9 @@ if __name__ == '__main__':
     nillWeight = len(trainingData)
     total = 0
     for t in trainingData:
-        d[tuple(t)] = 1/3
+        d[tuple(t)] = 1
     print(calcBestAttributeToSplitOn(attributes,attributeValueDict,trainingData,d))
+    print(calcWorstAttributeToSplitOn(attributes,attributeValueDict,trainingData,d))
         
 
     

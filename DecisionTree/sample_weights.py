@@ -9,14 +9,14 @@ def updateWeightsGivenMissClassifiedExamplesAndAmountOfSay(amountOfSay,missClass
     tDataArray = [] # of the form ([],normalized amount)
     for sample in trainingData:
         sample = tuple(sample)
-        print(sample)
+        #print(sample)
         if sample in missClassfiedSamples:
             val = sampleWeights[sample] * math.exp(amountOfSay)
-            print(f"upweight is {val}")
+           # print(f"upweight is {val}")
             tDataArray.append((sample, val))
         else:
             val = sampleWeights[sample] * math.exp(-amountOfSay)
-            print(f"downweight is {val}")
+            #print(f"downweight is {val}")
             tDataArray.append((sample, val))
     # Next we normalize
     val = 0 
@@ -75,11 +75,22 @@ def test5():
     updatedWeights = updateWeightsGivenMissClassifiedExamplesAndAmountOfSay(amountOfSay, missClassfiedSamples, sampleWeights, trainingData)
     print("Test5 Updated Weights are", updatedWeights)
     
+def test6():
+    amountOfSay = 0.97
+    missClassfiedSamples = {(8,1)}
+    sampleWeights = {(1,0): 0.125, (2,0): 0.125, (3,0): 0.125, (4,0) : 0.125 , (5,0) : 0.125, (6,0) : 0.125, (7,0) : 0.125, (8,1): 0.125}
+    trainingData = [[1,0], [2,0], [3,0],[4,0],[5,0],[6,0],[7,0],[8,1]]  
+    updatedWeights = updateWeightsGivenMissClassifiedExamplesAndAmountOfSay(amountOfSay, missClassfiedSamples, sampleWeights, trainingData)
+    print("Test6 Updated Weights are", updatedWeights)
+    sampleWeights = updatedWeights
+    updatedWeights = updateWeightsGivenMissClassifiedExamplesAndAmountOfSay(amountOfSay, missClassfiedSamples, sampleWeights, trainingData)
+    print("Test6 Updated Weights are", updatedWeights)
+    
 if __name__ == "__main__":
     #Simple test
     # test1()
     # test2()
     # test3()
     # test4()
-    test5()
+    test6()
     

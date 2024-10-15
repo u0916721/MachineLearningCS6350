@@ -109,9 +109,9 @@ class cleaner:
         #Read in the training data
         self.trainingData = []
         self.testData = []
-        relative_path = os.path.join('DataSets', 'Bank', 'test.csv')
+        relative_path = os.path.join('DataSets', 'Bank', 'debug.csv')
         read_file(relative_path,self.trainingData)
-        relative_path = os.path.join('DataSets', 'Bank', 'train.csv')
+        relative_path = os.path.join('DataSets', 'Bank', 'debug.csv')
         read_file(relative_path,self.testData)
     
     #May need to make deep copies of the training data if we are required to clean the data in a diffrent way

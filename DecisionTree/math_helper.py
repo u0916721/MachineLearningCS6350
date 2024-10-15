@@ -9,6 +9,7 @@ import math
 def calcEntropy(val):
     if val == 0:
         return 0
+   # print("calcing entropy for " + str(val))
     return -1 * val * math.log2(val)
 
 #Calculates Gini Index

@@ -12,6 +12,7 @@ import decision_tree
 import sample_calc
 from data_cleaner import cleaner
 from entropy_stump import calcBestAttributeToSplitOn
+from entropy_stump import calcWorstAttributeToSplitOn
 import math
 import copy
 class tree:
@@ -25,13 +26,18 @@ class tree:
         #Create the tree from the root node
         decision_tree.createTreeInformationGainEntropy(depth,self.rootNode,sample_calc.calculateBestGainGini)
 class stump:
-    def __init__(self,attributes,attributeValueDict,trainingData,values,sampleWeights):
+    def __init__(self,attributes,attributeValueDict,trainingData,values,sampleWeights,test=False,attr = None):
         # Set the root node of the stump
         self.rootNode = node(None,trainingData,attributes,attributeValueDict,values)
         self.trainingData = trainingData
         self.amountOfSay = 0
         self.sampleWeights = sampleWeights
-        attributeToSplitOn = calcBestAttributeToSplitOn(attributes,attributeValueDict,trainingData,sampleWeights)[0]
+        if test == False:
+            attributeToSplitOn = calcBestAttributeToSplitOn(attributes,attributeValueDict,trainingData,sampleWeights)[0]
+        elif attr == None:   
+            attributeToSplitOn = calcWorstAttributeToSplitOn(attributes,attributeValueDict,trainingData,sampleWeights)[0]
+        else:
+            attributeToSplitOn = attr
         #Create the tree from the root node
         decision_tree.createStump(self.rootNode,attributeToSplitOn)
     #Return the amount of say along with the a dictionary of the misclassfied samples
@@ -42,18 +48,21 @@ class stump:
         for sample in self.trainingData:
             temp = self.perdict(copy.deepcopy(sample))
             perdiction = temp[0]
-            if perdiction== "yes":
-                exit()
             #print(perdiction)
             if perdiction != sample[len(sample)-1]:
+                #totalError += 1/(len(self.trainingData))
                 totalError += self.sampleWeights[tuple(sample)]
-                missClassfiedSamples.add(tuple(sample[:-1]))
+                #totalError += 1
+               # print(self.sampleWeights[tuple(sample)])
+                missClassfiedSamples.add(tuple(sample))
         #We will set amount of say here because why not?
         #Some edge case to prevent dividing by zero
+        
         if totalError == 0:
-            totalError = 0.00000000001
-       # print(f"total error is {totalError}")
-        exit()
+            totalError = 0.000001
+        # totalError/len(self.trainingData)
+        #print(totalError)
+        # print(f"total error is {totalError}")
         self.amountOfSay = 0.5 * math.log((((1 - totalError) / totalError)))
         #Then we do something with this and update our weights accordingly
         #Sample weights may not be needed here but it could be usefull
@@ -120,7 +129,6 @@ if __name__ == '__main__':
     wrong = 0
     origData = c.createDeepCopyTrainingData()
     for i in range(0,500):
-        print(i)
         t = tree(origData,c.attributes,c.attributeValues,c.values,2)
     # for n in c.createDeepCopyTrainingData():
     #     # print(n)

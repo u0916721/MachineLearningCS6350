@@ -50,9 +50,9 @@ def createTreeInformationGainEntropy(depth,root: node,purityFunction):
     # print("And has training data " + str(root.trainingDataSet))
     for a in attributeValues:
         trainingParition = sample_calc.partitionTrainingDataSetBasedOnAttributeValue(sample_calc.getIndexOfAttribute(attributeSplit,root.attributes),a,root.trainingDataSet)
+        #print(trainingParition)
         if trainingParition:
             # Remove attribute from trainingPartition
-
             trainingParitionTemp = sample_calc.removeAttributeFromTrainingDataSet(sample_calc.getIndexOfAttribute(attributeSplit,root.attributes),trainingParition)
             # print()
             # print("*****")

@@ -52,6 +52,7 @@ class stump:
             if perdiction != sample[len(sample)-1]:
                 #totalError += 1/(len(self.trainingData))
                 totalError += self.sampleWeights[tuple(sample)]
+                #print("Wrong")
                 #totalError += 1
                # print(self.sampleWeights[tuple(sample)])
                 missClassfiedSamples.add(tuple(sample))
@@ -61,8 +62,8 @@ class stump:
         if totalError == 0:
             totalError = 0.000001
         # totalError/len(self.trainingData)
-        #print(totalError)
-        # print(f"total error is {totalError}")
+        totalError = totalError/1
+        print(f"total error is {totalError}")
         self.amountOfSay = 0.5 * math.log((((1 - totalError) / totalError)))
         #Then we do something with this and update our weights accordingly
         #Sample weights may not be needed here but it could be usefull

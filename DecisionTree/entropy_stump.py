@@ -66,7 +66,7 @@ def calcBestAttributeToSplitOn(attributes,attributeValuesDict,dataset,weightedSa
         if tempV > bestVal:
             bestVal = tempV
             bestAttribute = tempA
-    #print(f"splitting on {bestAttribute} with value {bestVal}")
+    print(f"splitting on {bestAttribute} with value {bestVal}")
     return (bestAttribute,bestVal)
 
 def calcWorstAttributeToSplitOn(attributes,attributeValuesDict,dataset,weightedSample):
@@ -81,7 +81,7 @@ def calcWorstAttributeToSplitOn(attributes,attributeValuesDict,dataset,weightedS
         if tempV < bestVal:
             bestVal = tempV
             bestAttribute = tempA
-    #print(f"splitting on {bestAttribute} with value {bestVal}")
+    print(f"splitting on {bestAttribute} with value {bestVal}")
     return (bestAttribute,bestVal)
 
 

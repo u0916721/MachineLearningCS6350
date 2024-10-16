@@ -41,7 +41,9 @@ def allPossibleStumps():
                 print("Printing tree")
                 printTree(s.rootNode)
                 print("")
-    
+def printNice(someDict):
+    for d in someDict:
+        print(someDict[d])
 def runAdaBoost():
     bankData = cleaner()
     bankData.initBankData()
@@ -71,7 +73,7 @@ def runAdaBoost():
     #updateWeightsGivenMissClassifiedExamplesAndAmountOfSay(amountOfSay,missClassfiedSamples,sampleWeights,trainingData)
     stumpArr = []
     b = True
-    for i in range(0,500):
+    for i in range(0,10):
         s = stump(bankData.attributes,bankData.attributeValues,bankData.createDeepCopyTrainingData(),["yes","no"],sampleWeights)
         stumpArr.append(s)
         temp = s.calculateTotalError()
@@ -79,6 +81,10 @@ def runAdaBoost():
         missClassfiedSamples = temp[1]
         sampleWeights = temp[2]
         amountOfSay = temp[3]
+        printNice(sampleWeights)
+        print(f"amountOfSay is {amountOfSay}")
+        print()
+        
         # print(f"The amount of say for this stump is {amountOfSay}")
         # print(f"totalError is {totalError}")
         sampleWeights = updateWeightsGivenMissClassifiedExamplesAndAmountOfSay(amountOfSay,missClassfiedSamples,sampleWeights,bankData.createDeepCopyTrainingData())

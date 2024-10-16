@@ -62,8 +62,9 @@ class stump:
         if totalError == 0:
             totalError = 0.000001
         # totalError/len(self.trainingData)
-        totalError = totalError/1
-        print(f"total error is {totalError}")
+        # totalError = totalError/1
+        
+        #print(totalError)
         self.amountOfSay = 0.5 * math.log((((1 - totalError) / totalError)))
         #Then we do something with this and update our weights accordingly
         #Sample weights may not be needed here but it could be usefull

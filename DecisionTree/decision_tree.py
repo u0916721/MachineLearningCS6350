@@ -1,6 +1,7 @@
 # Basic decision tree, which really is just a bunch of ID3 methods to create a tree
 # Probably could put this logic in main but for now might be simpler to extract, though idk
 from node import node
+import random
 import sample_calc
 
 #Creates a stump that splits on the attribute
@@ -65,6 +66,49 @@ def createTreeInformationGainEntropy(depth,root: node,purityFunction):
         # print(" Creating children for " + str(attributeSplit))
         # c.printNode()
         createTreeInformationGainEntropy(depth -1,c,purityFunction)
+    #root.printNode()
+    return 
+#This is random tree learn
+def createTreeInformationGainEntropyRandom(depth,root: node,purityFunction,featureSubSetSize):
+    # Basecase
+    # len(root.attrinutes) case needed for two sample that are indentical aside from their label
+    if depth == 0 or root is None or root.hasOnlyOneLabel() or len(root.attributes) == 1:
+        return
+    #Next tasks find the attribute with the best information gain and split on this attribute
+    if len(root.trainingDataSet) < featureSubSetSize:
+        rand = random.randint(0, len(root.attributes)-1)
+        attributeSplit = root.attributes[rand]
+    else:
+        #Next tasks find the attribute with the best information gain and split on this attribute
+        subset = random.sample(root.trainingDataSet, featureSubSetSize)
+        bestGain = purityFunction(root.labels,subset,root.attributes)
+        #Then remove the split attribute from the data set, this is an expensive call, but optimize later
+        attributeSplit = bestGain[0]
+    #Then remove the split attribute from the data set, this is an expensive call, but optimize later
+    #Assign it the current root as the attribute we split on
+    #Assign it the current root as the attribute we split on
+    root.splitAttribute = attributeSplit
+    #Next we create children
+    attributeValues = root.attributesValues[attributeSplit]
+    #print("Splitting on " + str(attributeSplit) + " Which had a gain of " + str(bestGain[1]) + " Which has attribute values " + str(attributeValues) + " and is indexed at " +str(sample_calc.getIndexOfAttribute(attributeSplit,root.attributes)))
+    # print("And has training data " + str(root.trainingDataSet))
+    for a in attributeValues:
+        trainingParition = sample_calc.partitionTrainingDataSetBasedOnAttributeValue(sample_calc.getIndexOfAttribute(attributeSplit,root.attributes),a,root.trainingDataSet)
+        #print(trainingParition)
+        if trainingParition:
+            # Remove attribute from trainingPartition
+            trainingParitionTemp = sample_calc.removeAttributeFromTrainingDataSet(sample_calc.getIndexOfAttribute(attributeSplit,root.attributes),trainingParition)
+            # print()
+            # print("*****")
+            # print(str(trainingParitionTemp))
+            # print("*****")
+            # print()
+            newAttributes = sample_calc.removeAttributeFromAttributeList(attributeSplit,root.attributes)
+            root.children.append(node(a,trainingParitionTemp,newAttributes,root.attributesValues,root.labels))
+    for c in root.children:
+        # print(" Creating children for " + str(attributeSplit))
+        # c.printNode()
+        createTreeInformationGainEntropyRandom(depth -1,c,purityFunction,featureSubSetSize)
     #root.printNode()
     return 
 def printTree(tree: node):

@@ -1,5 +1,7 @@
 #This is a class for ada boost algorithm
 import math
+import random
+import copy
 def updateWeightsGivenMissClassifiedExamplesAndAmountOfSay(amountOfSay,missClassfiedSamples,sampleWeights,trainingData):
     #updateAmount = sampleWeight * math.exp(amountOfSay)
     #We also need to save the amount of weights we have, hashmap does not allow duplicates.
@@ -28,6 +30,25 @@ def updateWeightsGivenMissClassifiedExamplesAndAmountOfSay(amountOfSay,missClass
     for t in tDataArray:
         sampleWeights[tuple(t[0])] = t[1]
     return sampleWeights
+#Assumes dataset is normalized
+def generateNewRandomDistribution(sampleWeights,dataset):
+    data = []
+    weights = []
+    for d in dataset:
+        data.append(copy.deepcopy(d))
+        weights.append(sampleWeights[tuple(d)])
+    newArr = random.choices(data, weights = weights, k = len(dataset)-1)
+    for i in range(0,len(newArr)):
+        newArr[i] = copy.deepcopy(newArr[i])
+    totalLength = len(dataset)
+    for d in dataset:
+        sampleWeights[tuple(d)] = 1/totalLength
+        
+        
+    return copy.deepcopy(newArr)
+        
+        
+        
 
 # Very simply test
 def test1():

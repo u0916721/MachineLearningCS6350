@@ -4,6 +4,7 @@
 from data_cleaner import cleaner
 from generic_tree import stump
 from sample_weights import updateWeightsGivenMissClassifiedExamplesAndAmountOfSay
+from sample_weights import generateNewRandomDistribution
 from decision_tree import printTree
 import copy
 
@@ -72,45 +73,72 @@ def runAdaBoost():
     #return (totalError,missClassfiedSamples,self.sampleWeights,self.amountOfSay)
     #updateWeightsGivenMissClassifiedExamplesAndAmountOfSay(amountOfSay,missClassfiedSamples,sampleWeights,trainingData)
     stumpArr = []
+    data = bankData.createDeepCopyTrainingData()
     b = True
-    for i in range(0,10):
-        s = stump(bankData.attributes,bankData.attributeValues,bankData.createDeepCopyTrainingData(),["yes","no"],sampleWeights)
+    for i in range(0,500):
+        s = stump(bankData.attributes,bankData.attributeValues,data,["yes","no"],sampleWeights)
         stumpArr.append(s)
         temp = s.calculateTotalError()
         totalError = temp[0]
         missClassfiedSamples = temp[1]
         sampleWeights = temp[2]
         amountOfSay = temp[3]
-        printNice(sampleWeights)
-        print(f"amountOfSay is {amountOfSay}")
-        print()
-        
         # print(f"The amount of say for this stump is {amountOfSay}")
-        # print(f"totalError is {totalError}")
-        sampleWeights = updateWeightsGivenMissClassifiedExamplesAndAmountOfSay(amountOfSay,missClassfiedSamples,sampleWeights,bankData.createDeepCopyTrainingData())
-        samplesForPerdiction = bankData.createDeepCopyTrainingData()
-        #Here we calculate our total error
         totalRight = 0
-        for s in samplesForPerdiction:
-            verdict = 0
-            for stumpy in stumpArr:
-                tt = stumpy.perdict(copy.deepcopy(s))
+        for samp in bankData.createDeepCopyTestData():
+                tt = s.perdict(copy.deepcopy(samp))
                 res = tt[0]
                 say = tt[1]
                 #print(say)
-                if res == "yes":
-                    verdict += (1 * say)
-                else:
-                    verdict += (-1*say)
-                    #print(1*say)
-            if verdict >= 0:
-                verdict = "yes"
-            else:
-                verdict = "no"
-            actualResult = s[len(s)-1]
-            if actualResult == verdict:
-                totalRight += 1
-        print(f"At itteration {i} Training data , we got a total error of {(len(samplesForPerdiction)-totalRight)/len(samplesForPerdiction)}")
+                if res == samp[len(samp)-1]:
+                    totalRight += 1
+        print(f"{i}. error on training data is {totalError}, error on test data is {(len(bankData.testData)-totalRight)/len(bankData.testData)}")           #print(1*say)
+        sampleWeights = updateWeightsGivenMissClassifiedExamplesAndAmountOfSay(amountOfSay,missClassfiedSamples,sampleWeights,copy.deepcopy(data))
+        data = generateNewRandomDistribution(sampleWeights,data)
+        samplesForPerdiction = bankData.createDeepCopyTestData()
+        #Here we calculate our total error
+        # totalRight = 0
+        # totalRightTrain = 0
+        # for s in samplesForPerdiction:
+        #     verdict = 0
+        #     for stumpy in stumpArr:
+        #         tt = stumpy.perdict(copy.deepcopy(s))
+        #         res = tt[0]
+        #         say = tt[1]
+        #         #print(say)
+        #         if res == "yes":
+        #             verdict += (1 * say)
+        #         else:
+        #             verdict += (-1*say)
+        #             #print(1*say)
+        #     if verdict >= 0:
+        #         verdict = "yes"
+        #     else:
+        #         verdict = "no"
+        #     actualResult = s[len(s)-1]
+        #     if actualResult == verdict:
+        #         totalRight += 1
+        # for s in bankData.createDeepCopyTrainingData():
+        #     verdict = 0
+        #     for stumpy in stumpArr:
+        #         tt = stumpy.perdict(copy.deepcopy(s))
+        #         res = tt[0]
+        #         say = tt[1]
+        #         #print(say)
+        #         if res == "yes":
+        #             verdict += (1 * say)
+        #         else:
+        #             verdict += (-1*say)
+        #             #print(1*say)
+        #     if verdict >= 0:
+        #         verdict = "yes"
+        #     else:
+        #         verdict = "no"
+        #     actualResult = s[len(s)-1]
+        #     if actualResult == verdict:
+        #         totalRightTrain += 1
+        
+        #print(f"At itteration {i} Test data , total error of {(len(samplesForPerdiction)-totalRight)/len(samplesForPerdiction)}, Training Data, total error of {(len(samplesForPerdiction)-totalRightTrain)/len(samplesForPerdiction)}")
                     
                 
                 

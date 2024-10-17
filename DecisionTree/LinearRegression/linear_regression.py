@@ -5,22 +5,6 @@ def readData(file_path):
     data = np.genfromtxt(file_path, delimiter=',', skip_header=1)
     return data
 
-#Data in the form of a numpy array
-#Returns a vector for perdiction
-def batchGradientDescent(data):
-    #Init the base weight
-    weightVector = np.zeros(data.shape[1] - 1)
-    wT = weightVector
-    
-    return None
-
-#xi is the sample vector
-#weightVector is our curent weightVector
-# bias which is optional for now is zero
-#xj is the xjth element of the the sample vector
-def individualGradient(weightVector,xi,xj,bais=0):
-    #Have this one take care of yi
-    return None
 #Calculating y_i - wTX - b
 #We can optimize this later
 def calculateYiMinusWTXI(wT,xI,b=0):
@@ -29,6 +13,7 @@ def calculateYiMinusWTXI(wT,xI,b=0):
 def calcOneElementDeltaJ(j,weightVector,data,bias=0):
     deltaJ = 0
     for s in data:
+        #print(calculateYiMinusWTXI(weightVector,s))
         deltaJ -= (calculateYiMinusWTXI(weightVector,s)) * s[j]
     return deltaJ
 #Calcuates an entire delta J
@@ -40,16 +25,19 @@ def calculateEnitireDeltaJ(weightVector,data,bias=0):
     return np.array(deltaJ)
 #Gives a new weight value
 def updateWeight(weightVector,r,deltaJ):
-    return weightVector - r * deltaJ * weightVector
+    return weightVector - r * deltaJ
 
-def batchGradientDescent(data,r = 0.5, b = 0):
+def batchGradientDescent(data,r = 0.01, b = 0):
     #Init the base weight
     weightVector = np.zeros(data.shape[1] - 1)
     wT = weightVector
-    while True:
+    for i in range(0,10):
         deltaJ = calculateEnitireDeltaJ(weightVector,data)
         newWeight = updateWeight(weightVector,r,deltaJ)
-        if newWeight - weightVector == 0:
+        #to examine convergence, you can watch the norm of the weight vector difference, ‖wt −wt−1‖, at each step t. 
+        # if ‖wt −wt−1‖ is less than a tolerance level, say, 10−6, you can conclude that it converges
+        if np.linalg.norm(newWeight - weightVector) <= 10**-6:
+            print("Converge!")
             break
     return newWeight
 
@@ -57,5 +45,4 @@ def batchGradientDescent(data,r = 0.5, b = 0):
 
 file_path = 'slump_test.data'
 data = readData(file_path)
-
-print(data)
+batchGradientDescent(data)

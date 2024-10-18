@@ -3,6 +3,9 @@ import numpy as np
 
 def readData(file_path):
     data = np.genfromtxt(file_path, delimiter=',', skip_header=1)
+       # Add a column of ones to the beginning of the data
+    data = np.hstack((np.ones((data.shape[0], 1)), data))  
+    
     return data
 
 #Calculating y_i - wTX - b
@@ -31,12 +34,13 @@ def updateWeight(weightVector,r,deltaJ):
 def costFunction(weightVector,data):
     totalCost = 0
     for d in data:
+        #Square the absolute diffrence between ground truth and the perdiction
         totalCost += (d[-1] - np.dot(weightVector, d[:-1]))**2     
-    return (1/2*len(data)) * totalCost
+    return (1/2) * totalCost
 
 def batchGradientDescent(data,r = 0.025, b = 0):
     #Init the base weight
-    weightVector = np.zeros(data.shape[1] - 1)
+    weightVector = np.zeros(data.shape[1])
     wT = weightVector
     for i in range(0,2000):
         deltaJ = calculateEnitireDeltaJ(weightVector,data)
@@ -53,4 +57,5 @@ def batchGradientDescent(data,r = 0.025, b = 0):
 
 file_path = 'slump_test.data'
 data = readData(file_path)
-batchGradientDescent(data)
+print(data[0])
+#batchGradientDescent(data)

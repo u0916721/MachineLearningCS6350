@@ -89,9 +89,8 @@ def runRandomForest():
     bankData.initBankData()
     bankData.cleanBankData(bankData.attributes,bankData.attributeValues,bankData.trainingData,bankData.testData)
     for n in range(1,4):
-            
         forrest = []
-        for i in range(0,100):
+        for i in range(0,500):
             bootStappedData = sampleWithReplacement(bankData.createDeepCopyTrainingData())
         # print(bankData.attributes)
         # print(bankData.attributeValues)
@@ -137,3 +136,4 @@ def majorityVote(forrest,sample):
         return "no"
 if __name__ == '__main__':
     runRandomForest()
+    run_bagged_trees()

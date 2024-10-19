@@ -74,7 +74,7 @@ def createTreeInformationGainEntropyRandom(depth,root: node,purityFunction,featu
     # len(root.attrinutes) case needed for two sample that are indentical aside from their label
     if depth == 0 or root is None or root.hasOnlyOneLabel() or len(root.attributes) == 1:
         return
-    #Next tasks find the attribute with the best information gain and split on this attribute
+    #if our training data subset size is less then 2,46
     if len(root.trainingDataSet) < featureSubSetSize:
         rand = random.randint(0, len(root.attributes)-1)
         attributeSplit = root.attributes[rand]

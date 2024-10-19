@@ -49,13 +49,13 @@ def batchGradientDescent(data,r = 0.015001, b = 0,testData = None):
         # print("here")
         # print(deltaJ)
         newWeight = updateWeight(weightVector,r,deltaJ)
-        print(f"Total error is {costFunction(newWeight,data)}")
+        #print(f"Total error is {costFunction(newWeight,data)}")
         #print(f"Total error is {costFunction(newWeight,testData)}")
         #to examine convergence, you can watch the norm of the weight vector difference, ‖wt −wt−1‖, at eaech step t. 
         # if ‖wt −wt−1‖ is less than a tolerance level, say, 10−6, you can conclude that it converges
         #print(np.linalg.norm(newWeight - weightVector))
-        if np.linalg.norm(newWeight - weightVector) <= 10**-10:
-            print("Converge!")
+        if np.linalg.norm(newWeight - weightVector) <= 10**-6:
+            #print("Converge!")
             break
         weightVector = newWeight
     return newWeight
@@ -69,14 +69,11 @@ def stochasticGradientDescent(data,r = 0.015001, b = 0,testData = None):
         # print("here")
         # print(deltaJ)
         newWeight = updateWeight(weightVector,r,deltaJ)
-        print(f"Total error is {costFunction(newWeight,data)}")
-        print(f"Total error is {costFunction(newWeight,testData)}")
         # print(f"Total error is {costFunction(newWeight,testData)}")
         #to examine convergence, you can watch the norm of the weight vector difference, ‖wt −wt−1‖, at eaech step t. 
-        # if ‖wt −wt−1‖ is less than a tolerance level, say, 10−6, you can conclude that it converges
+        # if ‖wt −wt−1‖ is less than a tolerance level, say, 10−8, you can conclude that it converges
         #print(np.linalg.norm(newWeight - weightVector))
         if np.linalg.norm(newWeight - weightVector) <= 10**-6:
-            print("Converge!")
             break
         weightVector = newWeight
     return newWeight
@@ -88,7 +85,16 @@ def analyticalForm(data):
 
     
 
+# data = readData('train.csv')
+# testData = readData('test.csv')
+# d = batchGradientDescent(data)
 data = readData('train.csv')
 testData = readData('test.csv')
-d = analyticalForm(data)
-print(d)
+print("Learned vectors appear after each running statemnt")
+print("Note that my vectors use the X_0 = 1 implementation as explained in lecture")
+print("Running stoachstic Gradient Descent")
+print(stochasticGradientDescent(data,testData=testData))
+print("Running batch Gradient Descent")
+print(batchGradientDescent(data))
+print("Running Analytical Form")
+print(analyticalForm(data))

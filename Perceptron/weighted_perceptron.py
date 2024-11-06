@@ -48,8 +48,6 @@ def perceptronTest():
     result = perceptronTrain(trainingData,100)
     weightVector = result[0]
     bias = result[1]
-    print(weightVector)
-    print(bias)
     totalRight = 0
     totalWrong = 0
     for td in testData:

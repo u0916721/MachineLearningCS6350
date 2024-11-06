@@ -14,14 +14,17 @@ def perceptronTrain(D,Maxiter):
             a = activationPerceptron(weightVector,d,bias)
             #ya should always be positive if is correct this is the online error driven aspect of perceptron
             ya = y * a
+            a = np.sign(a)
             #Did we make an error, this is the same as y_i != y
             # as -y * -y = +y and +y * +y = y
-            if ya <= 0:
+            if a != y:
                 #Then we update the weight vector and bias
                 weightVector = weightVector + y*d[:-1]
-                bias = bias + y
-    #Here we return a tuple with the weight vector and its bias     
-    return (weightVector,bias)
+                bias = 0
+
+    #Here we return a tuple with the weight vector and its bias    
+    print(bias)
+    return (weightVector,0)
 #returns the activations for this sample
 def activationPerceptron(weightVector,sample,bias):
     s = sample[:-1]
@@ -30,9 +33,9 @@ def activationPerceptron(weightVector,sample,bias):
 def perceptronGuess(weightVector,bias,testSample):
     a = activationPerceptron(weightVector,testSample,bias)
     if a >= 0:
-        return True
+        return 1
     else:
-        return False
+        return 0
 def readData(file_path):
     data = np.genfromtxt(file_path, delimiter=',')
     return data
@@ -48,7 +51,9 @@ def perceptronTest():
     totalRight = 0
     totalWrong = 0
     for td in testData:
-        passed = perceptronGuess(weightVector,bias,td)
+        res = perceptronGuess(weightVector,bias,td)
+        label = td[-1]
+        passed = res == label
         if passed:
             totalRight += 1
         else:

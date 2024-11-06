@@ -7,6 +7,7 @@ import copy
 from random import randint
 
 def perceptronWeightedTrain(D,Maxiter):
+    np.random.seed(1)
     #Init weight vector to be the size of the data
     weightVector = np.zeros(len(D[0]) - 1,dtype = float) 
     weightVectors = [] # Contains a tuple array of (weightVector,score,bias)
@@ -14,7 +15,7 @@ def perceptronWeightedTrain(D,Maxiter):
     total = 0
     for i in range(0,Maxiter):
         #Should shuffle the array on each pass optional
-        #np.random.shuffle(D)
+        np.random.shuffle(D)
         c = 0
         for d in D:
             total += 1
@@ -64,20 +65,16 @@ def perceptronGuess(weightVectors,testSample):
 def compressIntoDistinctWeights(weightVectors):
     m = {}
     for w in weightVectors:
-        t = (np.array2string((w[0])),w[1])
+        t = (np.array2string(w[0],separator=','),w[1])
         if t in m:
             m[t] += w[2]
         else:
             m[t] = w[2]
     a = []
     for k in m:
-        print(k[0])
-        
         #print(np.array(eval(k[0])))
-        # a.append(np.fromstring(k[0]),k[1])
-    print(a)
-    exit()
-    return a
+        a.append((k[0],m[k]))
+    return reversed(sorted(a, key=lambda x: x[1]))
 
 def readData(file_path):
     data = np.genfromtxt(file_path, delimiter=',')
@@ -109,4 +106,7 @@ def perceptronTest():
     print(f"For the test data of {len(testData)} elements the number of 1s is {num1} and the number of zeros is {num0}, ratio is {(num1/(num0+num1)) * 100} ") 
     print(f"Error rate on the test data is {(totalWrong/(totalWrong+totalRight)) * 100}")
     print(f"Total perdectied right on the test data is {(totalRight/(totalWrong+totalRight)) * 100}")
-perceptronTest()
+    return weightVectors
+h = compressIntoDistinctWeights(perceptronTest())
+# for i in h:
+#    print(i)

@@ -1,14 +1,17 @@
 #This is the code that contains perceptron code.
 #This assumes d is a numpy data frame
 import numpy as np
+import copy
 
 def perceptronTrain(D,Maxiter):
+    np.random.seed(1)
     #Init weight vector to be the size of the data
     weightVector = np.zeros(len(D[0])-1,dtype = float) # more here, based on size of ds
+    averageVector = copy.deepcopy(weightVector)
     bias = 0
     for i in range(0,Maxiter):
         #Should shuffle the array on each pass optional
-        #np.random.shuffle(D)
+        np.random.shuffle(D)
         for d in D:
             y = d[-1] # This is the true label of the sample d
             a = activationPerceptron(weightVector,d,bias)
@@ -21,10 +24,9 @@ def perceptronTrain(D,Maxiter):
                 #Then we update the weight vector and bias
                 weightVector = weightVector + y*d[:-1]
                 bias = 0
-
+            averageVector = averageVector + weightVector
     #Here we return a tuple with the weight vector and its bias    
-    print(bias)
-    return (weightVector,0)
+    return (averageVector,0)
 #returns the activations for this sample
 def activationPerceptron(weightVector,sample,bias):
     s = sample[:-1]
@@ -67,7 +69,7 @@ def perceptronTest():
         else:
             num0 += 1
     print(f"For the test data of {len(testData)} elements the number of 1s is {num1} and the number of zeros is {num0}, ratio is {(num1/(num0+num1)) * 100} ")
-        
     print(f"Error rate on the test data is {(totalWrong/(totalWrong+totalRight)) * 100}")
     print(f"Total perdectied right on the test data is {(totalRight/(totalWrong+totalRight)) * 100}")
+    print(weightVector)
 perceptronTest()

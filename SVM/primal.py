@@ -58,19 +58,33 @@ def activate(y_i,w,x_i):
 def sgdTest():
     trainingData = readData('data/bank-note/train.csv')
     testData = readData('data/bank-note/test.csv')
-    w = trainsgd(trainingData,100,0.1,c[0],0.1,firstSchedule)
-    correct = 0
-    amount = 0
-    for t in testData:
-        x_i = t[:-1]
-        y_i = t[-1]
-        res = activator(y_i,w,x_i)
-        if res >= 1:
-            correct += 1
-        if y_i == 1:
-            amount += 1
-    print(f"If doing naive geussing on this data set(meaning all 1 or all -1), then our error rate is {(amount/len(testData) * 100)} or {((len(testData)-amount)/len(testData) * 100)} ")
-    print(f"Total correct for the first value of C {c[0]} is {correct / len(testData) * 100}")
-    return None
+    for i in range(0,len(c)):
+        trainingData = readData('data/bank-note/train.csv')
+        testData = readData('data/bank-note/test.csv')
+        w = trainsgd(trainingData,100,0.1,c[i],0.1,firstSchedule)
+        correct = 0
+        amount = 0
+        for t in testData:
+            x_i = t[:-1]
+            y_i = t[-1]
+            res = activator(y_i,w,x_i)
+            if res >= 1:
+                correct += 1
+            if y_i == 1:
+                amount += 1
+        # print(f"If doing naive geussing on this data set(meaning all 1 or all -1), then our error rate is {(amount/len(testData) * 100)} or {((len(testData)-amount)/len(testData) * 100)} ")
+        print(f"Total correct on the test data for the {i}th value of C {c[i]} is {correct / len(testData) * 100}")
+        correct = 0
+        for t in trainingData:
+            x_i = t[:-1]
+            y_i = t[-1]
+            res = activator(y_i,w,x_i)
+            if res >= 1:
+                correct += 1
+            if y_i == 1:
+                amount += 1
+        # print(f"If doing naive geussing on this data set(meaning all 1 or all -1), then our error rate is {(amount/len(testData) * 100)} or {((len(testData)-amount)/len(testData) * 100)} ")
+        print(f"Total correct on the training data for the {i}th value of C {c[i]} is {correct / len(trainingData) * 100}")
+        print()
 
 sgdTest()

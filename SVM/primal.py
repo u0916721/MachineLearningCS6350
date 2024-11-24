@@ -9,6 +9,8 @@
 #Code for the primal stochastic sub gradient descent.
 # We are asked to use the following for c
 import numpy as np
+#This will slow things down, but no other way around it 
+import copy
 c = [100/873,500/873,700/873]
 #Might need to set a bias term here IDK
 def readData(file_path):
@@ -23,18 +25,22 @@ def trainsgd(D,epochs,learningRate, c,a,schedule):
     np.random.seed(1)
     N = len(D)
     np.random.seed(1)
-    w = np.zeros(len(D[0])-1,dtype = float)
+    w = np.zeros(len(D[0]),dtype = float)
+    #TODO add in the bias parameter here, for now lets be naive, and then see
+    #Will need deep copy
     t = 0
     for i in range(0,epochs):
         np.random.shuffle(D)
         #t = 0
         for d in D:
             y_i = d[-1]
-            x_i = d[:-1]
+            x_i = np.append(d[:-1], 1)
             if activator(y_i,w,x_i) <= 1:
-                w = w - (learningRate) * w + (learningRate * c * N * y_i * x_i)
+                w = w - (learningRate) * np.append(w[:-1],0) + (learningRate * c * N * y_i * x_i)
+                w[-1] = w[-1] - (learningRate * c * N * y_i)
             else:
-                w = (1-learningRate)*w
+
+                w[:-1] = (1 - learningRate) * w[:-1]
             t += 1
             learningRate = schedule(learningRate,t,a)
     return w
@@ -65,7 +71,7 @@ def sgdTest():
         correct = 0
         amount = 0
         for t in testData:
-            x_i = t[:-1]
+            x_i = np.append(t[:-1], 1)
             y_i = t[-1]
             res = activator(y_i,w,x_i)
             if res >= 1:
@@ -76,7 +82,7 @@ def sgdTest():
         print(f"Total correct on the test data for the {i}th value of C {c[i]} is {correct / len(testData) * 100}")
         correct = 0
         for t in trainingData:
-            x_i = t[:-1]
+            x_i = np.append(t[:-1], 1)
             y_i = t[-1]
             res = activator(y_i,w,x_i)
             if res >= 1:
@@ -86,5 +92,5 @@ def sgdTest():
         # print(f"If doing naive geussing on this data set(meaning all 1 or all -1), then our error rate is {(amount/len(testData) * 100)} or {((len(testData)-amount)/len(testData) * 100)} ")
         print(f"Total correct on the training data for the {i}th value of C {c[i]} is {correct / len(trainingData) * 100}")
         print()
-
+            
 sgdTest()

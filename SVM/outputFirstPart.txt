@@ -1,0 +1,38 @@
+For the 1th training schedule
+Total correct on the test data for the 0th value of C 0.1145475372279496 is 89.4
+Total correct on the training data for the 0th value of C 0.1145475372279496 is 90.48165137614679
+Total correct on the test data for the 1th value of C 0.572737686139748 is 90.2
+Total correct on the training data for the 1th value of C 0.572737686139748 is 91.28440366972477
+Total correct on the test data for the 2th value of C 0.8018327605956472 is 90.2
+Total correct on the training data for the 2th value of C 0.8018327605956472 is 91.39908256880734
+
+For the 2th training schedule
+Total correct on the test data for the 0th value of C 0.1145475372279496 is 87.4
+Total correct on the training data for the 0th value of C 0.1145475372279496 is 87.5
+Total correct on the test data for the 1th value of C 0.572737686139748 is 87.8
+Total correct on the training data for the 1th value of C 0.572737686139748 is 87.95871559633028
+Total correct on the test data for the 2th value of C 0.8018327605956472 is 87.8
+Total correct on the training data for the 2th value of C 0.8018327605956472 is 87.95871559633028
+
+For the 1th training schedule
+[-24.46141271 -19.31373191 -22.9879212   -5.26133937   0.        ]
+Total correct on the test data for the 0th value of C 0.1145475372279496 is 89.4
+Total correct on the training data for the 0th value of C 0.1145475372279496 is 90.48165137614679
+[-122.29832738  -96.57482061 -114.9432334   -26.30815835    0.        ]
+Total correct on the test data for the 1th value of C 0.572737686139748 is 90.2
+Total correct on the training data for the 1th value of C 0.572737686139748 is 91.28440366972477
+[-171.21762157 -135.20449648 -160.92036213  -36.83319267    0.        ]
+Total correct on the test data for the 2th value of C 0.8018327605956472 is 90.2
+Total correct on the training data for the 2th value of C 0.8018327605956472 is 91.39908256880734
+
+For the 2th training schedule
+[-24.99979022 -19.80461587 -26.84355095  -5.87135209   0.        ]
+Total correct on the test data for the 0th value of C 0.1145475372279496 is 87.4
+Total correct on the training data for the 0th value of C 0.1145475372279496 is 87.5
+[-124.99895111  -99.02307933 -134.21775476  -29.35676044    0.        ]
+Total correct on the test data for the 1th value of C 0.572737686139748 is 87.8
+Total correct on the training data for the 1th value of C 0.572737686139748 is 87.95871559633028
+[-174.99853156 -138.63231106 -187.90485666  -41.09946461    0.        ]
+Total correct on the test data for the 2th value of C 0.8018327605956472 is 87.8
+Total correct on the training data for the 2th value of C 0.8018327605956472 is 87.95871559633028
+

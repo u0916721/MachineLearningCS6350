@@ -11,7 +11,6 @@
 import numpy as np
 #This will slow things down, but no other way around it 
 import copy
-c = [100/873,500/873,700/873]
 #Might need to set a bias term here IDK
 def readData(file_path):
     #Don’t forget to convert the labels to be in {1, −1}
@@ -37,7 +36,7 @@ def trainsgd(D,epochs,learningRate, c,a,schedule):
             x_i = np.append(d[:-1], 1)
             if activator(y_i,w,x_i) <= 1:
                 w = w - (learningRate) * np.append(w[:-1],0) + (learningRate * c * N * y_i * x_i)
-                w[-1] = w[-1] - (learningRate * c * N * y_i)
+                #w[-1] = w[-1] + (learningRate * c * N * y_i)
             else:
 
                 w[:-1] = (1 - learningRate) * w[:-1]
@@ -62,35 +61,43 @@ def activate(y_i,w,x_i):
 
 #Runs our sgd algo
 def sgdTest():
+    c = [100/873,500/873,700/873]
     trainingData = readData('data/bank-note/train.csv')
     testData = readData('data/bank-note/test.csv')
-    for i in range(0,len(c)):
-        trainingData = readData('data/bank-note/train.csv')
-        testData = readData('data/bank-note/test.csv')
-        w = trainsgd(trainingData,100,0.1,c[i],0.1,firstSchedule)
-        correct = 0
-        amount = 0
-        for t in testData:
-            x_i = np.append(t[:-1], 1)
-            y_i = t[-1]
-            res = activator(y_i,w,x_i)
-            if res >= 1:
-                correct += 1
-            if y_i == 1:
-                amount += 1
-        # print(f"If doing naive geussing on this data set(meaning all 1 or all -1), then our error rate is {(amount/len(testData) * 100)} or {((len(testData)-amount)/len(testData) * 100)} ")
-        print(f"Total correct on the test data for the {i}th value of C {c[i]} is {correct / len(testData) * 100}")
-        correct = 0
-        for t in trainingData:
-            x_i = np.append(t[:-1], 1)
-            y_i = t[-1]
-            res = activator(y_i,w,x_i)
-            if res >= 1:
-                correct += 1
-            if y_i == 1:
-                amount += 1
-        # print(f"If doing naive geussing on this data set(meaning all 1 or all -1), then our error rate is {(amount/len(testData) * 100)} or {((len(testData)-amount)/len(testData) * 100)} ")
-        print(f"Total correct on the training data for the {i}th value of C {c[i]} is {correct / len(trainingData) * 100}")
+    trainingSched = [firstSchedule,secondSchedule]
+    ii = 1
+    for ts in trainingSched:
+        
+        print(f"For the {ii}th training schedule")
+        ii +=1
+        for i in range(0,len(c)):
+            trainingData = readData('data/bank-note/train.csv')
+            testData = readData('data/bank-note/test.csv')
+            w = trainsgd(trainingData,100,0.1,c[i],0.1,ts)
+            correct = 0
+            amount = 0
+            for t in testData:
+                x_i = np.append(t[:-1], 1)
+                y_i = t[-1]
+                res = activator(y_i,w,x_i)
+                if res >= 1:
+                    correct += 1
+                if y_i == 1:
+                    amount += 1
+            # print(f"If doing naive geussing on this data set(meaning all 1 or all -1), then our error rate is {(amount/len(testData) * 100)} or {((len(testData)-amount)/len(testData) * 100)} ")
+            print(w)
+            print(f"Total correct on the test data for the {i}th value of C {c[i]} is {correct / len(testData) * 100}")
+            correct = 0
+            for t in trainingData:
+                x_i = np.append(t[:-1], 1)
+                y_i = t[-1]
+                res = activator(y_i,w,x_i)
+                if res >= 1:
+                    correct += 1
+                if y_i == 1:
+                    amount += 1
+            # print(f"If doing naive geussing on this data set(meaning all 1 or all -1), then our error rate is {(amount/len(testData) * 100)} or {((len(testData)-amount)/len(testData) * 100)} ")
+            print(f"Total correct on the training data for the {i}th value of C {c[i]} is {correct / len(trainingData) * 100}")
         print()
             
 sgdTest()

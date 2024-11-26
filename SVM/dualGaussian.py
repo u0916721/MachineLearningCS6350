@@ -72,24 +72,47 @@ def getBias(w,xList,alphaList,c):
             break
     return y_j - np.dot(x_j, w)
 
+def guassianKernalPerdict(x_i,x,gamma):
+    #Based on the reading https://mccormickml.com/2013/08/15/the-gaussian-kernel/
+    #https://docs.scipy.org/doc/scipy/reference/generated/scipy.spatial.distance.cdist.html
+    x = distance.sqeuclidean(x_i, x)
+    x = -1 * (x/gamma)
+    return np.exp(x)
+#From lect 13 slides 68
+def gperdict(alphas,xList,sample,gamma,bias=0):
+    y = xList[:, -1]
+    x = xList[:, :-1]
+    sum = 0
+    for i in range(0,len(xList)):
+        sum += alphas[i]*y[i]*guassianKernalPerdict(x[i],sample,gamma)
+    return np.sign(sum+bias)
+
         
-def traindualPartB():
+def traindualDual():
     C = [100/873,500/873,700/873]
     Gammas = [0.1,0.5,1,5,100]
     trainingData = readData('data/bank-note/train.csv')
     testData = readData('data/bank-note/test.csv')
-    for c in C:
-        alphas = getAlphasGuassian(c ,trainingData,Gammas[0])
-        w = getWeightVecotr(alphas,trainingData)
-        print(f"The weight vector is {w}")
-        bias = getBias(w,trainingData,alphas,c)
-        print(f"The bias is {bias}")
-        right = 0
-        for t in testData:
-            tY = t[-1]
-            if np.sign(tY) == np.sign(np.dot(w,t[:-1]) + bias):
-                right += 1
-        print(f"Total right for {c} on testdata is {(right/len(testData)) * 100}")
+    for g in Gammas:
+        print(f"For gamma value {g} ")
+        for c in C:
+            alphas = getAlphasGuassian(c ,trainingData,g)
+            w = getWeightVecotr(alphas,trainingData)
+            # print(f"The weight vector is {w}")
+            bias = getBias(w,trainingData,alphas,c)
+            # print(f"The bias is {bias}")
+            right = 0
+            for t in testData:
+                tY = t[-1]
+                if np.sign(tY) == gperdict(alphas,trainingData,t[:-1],g):
+                    right += 1
+            print(f"Total right for C = {c} and Gamma = {g} on testdata is {(right/len(testData)) * 100}")
+            rightTraining = 0
+            for t in trainingData:
+                tY = t[-1]
+                if np.sign(tY) == gperdict(alphas,trainingData,t[:-1],g,bias):
+                    rightTraining += 1
+            print(f"Total right for C = {c} and Gamma = {g} on trainingData is {(rightTraining/len(testData)) * 100}")
 
 # traindual()
-traindualPartB()
+traindualDual()

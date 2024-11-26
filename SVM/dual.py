@@ -142,5 +142,5 @@ def traindualPartB():
                 right += 1
         print(f"Total right for {c} on testdata is {(right/len(testData)) * 100}")
 
-# traindual()
-traindualPartB()
+traindual()
+#traindualPartB()

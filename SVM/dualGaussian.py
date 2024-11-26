@@ -87,6 +87,17 @@ def gperdict(alphas,xList,sample,gamma,bias=0):
         sum += alphas[i]*y[i]*guassianKernalPerdict(x[i],sample,gamma)
     return np.sign(sum+bias)
 
+def countSupportVectors(alphas,c):
+    total = 0
+    aList = []
+    for a in alphas:
+        if a > 0 and a < c:
+            total +=1
+            aList.append(a)
+    return (total,aList)
+    
+    
+
         
 def traindualDual():
     C = [100/873,500/873,700/873]
@@ -113,6 +124,11 @@ def traindualDual():
                 if np.sign(tY) == gperdict(alphas,trainingData,t[:-1],g,bias):
                     rightTraining += 1
             print(f"Total right for C = {c} and Gamma = {g} on trainingData is {(rightTraining/len(testData)) * 100}")
+            res = countSupportVectors(alphas,c)
+            with open(str(c) + str(g) +'sv.txt', 'w') as f:
+                f.write(f"{res[0]}\n")
+                for item in res[1]:
+                    f.write(f"{item}\n")
 
 # traindual()
 traindualDual()

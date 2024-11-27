@@ -3,7 +3,6 @@ from scipy.optimize import minimize
 from scipy.spatial import distance
 import numpy as np
 
-
 def dualFunctionOptimizedGuassian(alphaList, xList,gamma):
     leftTerm = np.sum(alphaList)
     y = xList[:, -1]
@@ -100,10 +99,19 @@ def countSupportVectors(alphas,c):
 
         
 def traindualDual():
-    C = [100/873,500/873,700/873]
-    Gammas = [0.1,0.5,1,5,100]
+    # C = [100/873,500/873,700/873]
+    #C = [100/873]
+    #C = [500/873]
+    C = [700/873]
+    # Gammas = [0.1,0.5,1,5,100]
+    #Gammas = [0.1]
+    #Gammas = [0.5]
+    #Gammas = [1]
+    #Gammas = [5]
+    Gammas = [100]
     trainingData = readData('data/bank-note/train.csv')
     testData = readData('data/bank-note/test.csv')
+    # number = 0
     for g in Gammas:
         print(f"For gamma value {g} ")
         for c in C:
@@ -121,14 +129,14 @@ def traindualDual():
             rightTraining = 0
             for t in trainingData:
                 tY = t[-1]
-                if np.sign(tY) == gperdict(alphas,trainingData,t[:-1],g,bias):
+                if np.sign(tY) == gperdict(alphas,trainingData,t[:-1],g):
                     rightTraining += 1
-            print(f"Total right for C = {c} and Gamma = {g} on trainingData is {(rightTraining/len(testData)) * 100}")
-            res = countSupportVectors(alphas,c)
-            with open(str(c) + str(g) +'sv.txt', 'w') as f:
-                f.write(f"{res[0]}\n")
-                for item in res[1]:
-                    f.write(f"{item}\n")
-
+            print(f"Total right for C = {c} and Gamma = {g} on trainingData is {(rightTraining/len(trainingData)) * 100}")
+            # res = countSupportVectors(alphas,c)
+            # with open(str(number) + '.txt', 'w') as f:
+            #     f.write(f"{res[0]}\n")
+            #     for item in res[1]:
+            #         f.write(f"{item}\n")
+            # number += 1
 # traindual()
 traindualDual()

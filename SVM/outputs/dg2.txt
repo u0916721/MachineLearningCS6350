@@ -1,0 +1,45 @@
+For gamma value 0.1 
+Total right for C = 0.1145475372279496 and Gamma = 0.1 on testdata is 99.8
+Total right for C = 0.1145475372279496 and Gamma = 0.1 on trainingData is 100.0
+For gamma value 0.5
+Total right for C = 0.1145475372279496 and Gamma = 0.5 on testdata is 99.8
+Total right for C = 0.1145475372279496 and Gamma = 0.5 on trainingData is 100.0
+For gamma value 1 
+Total right for C = 0.1145475372279496 and Gamma = 1 on testdata is 99.8
+Total right for C = 0.1145475372279496 and Gamma = 1 on trainingData is 100.0
+For gamma value 5
+Total right for C = 0.1145475372279496 and Gamma = 5 on testdata is 99.4
+Total right for C = 0.1145475372279496 and Gamma = 5 on trainingData is 99.19724770642202
+For gamma value 100
+Total right for C = 0.1145475372279496 and Gamma = 100 on testdata is 99.6
+Total right for C = 0.1145475372279496 and Gamma = 100 on trainingData is 99.6559633027523
+For gamma value 0.1 
+Total right for C = 0.572737686139748 and Gamma = 0.1 on testdata is 99.8
+Total right for C = 0.572737686139748 and Gamma = 0.1 on trainingData is 100.0
+For gamma value 0.5 
+Total right for C = 0.572737686139748 and Gamma = 0.5 on testdata is 99.8
+Total right for C = 0.572737686139748 and Gamma = 0.5 on trainingData is 100.0
+For gamma value 1 
+Total right for C = 0.572737686139748 and Gamma = 1 on testdata is 99.8
+Total right for C = 0.572737686139748 and Gamma = 1 on trainingData is 100.0
+For gamma value 5 
+Total right for C = 0.572737686139748 and Gamma = 5 on testdata is 99.8
+Total right for C = 0.572737686139748 and Gamma = 5 on trainingData is 100.0
+For gamma value 100 
+Total right for C = 0.572737686139748 and Gamma = 100 on testdata is 100.0
+Total right for C = 0.572737686139748 and Gamma = 100 on trainingData is 100.0
+For gamma value 0.1 
+Total right for C = 0.8018327605956472 and Gamma = 0.1 on testdata is 99.8
+Total right for C = 0.8018327605956472 and Gamma = 0.1 on trainingData is 100.0
+For gamma value 0.5 
+Total right for C = 0.8018327605956472 and Gamma = 0.5 on testdata is 99.8
+Total right for C = 0.8018327605956472 and Gamma = 0.5 on trainingData is 100.0
+For gamma value 1 
+Total right for C = 0.8018327605956472 and Gamma = 1 on testdata is 99.8
+Total right for C = 0.8018327605956472 and Gamma = 1 on trainingData is 100.0
+For gamma value 5 
+Total right for C = 0.8018327605956472 and Gamma = 5 on testdata is 99.8
+Total right for C = 0.8018327605956472 and Gamma = 5 on trainingData is 100.0
+For gamma value 100 
+Total right for C = 0.8018327605956472 and Gamma = 100 on testdata is 100.0
+Total right for C = 0.8018327605956472 and Gamma = 100 on trainingData is 100.0

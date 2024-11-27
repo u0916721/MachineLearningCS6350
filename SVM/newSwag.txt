@@ -1,0 +1,3 @@
+For gamma value 100 
+Total right for C = 0.8018327605956472 and Gamma = 100 on testdata is 100.0
+Total right for C = 0.8018327605956472 and Gamma = 100 on trainingData is 100.0

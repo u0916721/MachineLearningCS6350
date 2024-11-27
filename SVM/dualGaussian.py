@@ -99,16 +99,16 @@ def countSupportVectors(alphas,c):
 
         
 def traindualDual():
-    # C = [100/873,500/873,700/873]
+    C = [100/873,500/873,700/873]
     #C = [100/873]
     #C = [500/873]
-    C = [700/873]
-    # Gammas = [0.1,0.5,1,5,100]
+    #C = [700/873]
+    Gammas = [0.1,0.5,1,5,100]
     #Gammas = [0.1]
     #Gammas = [0.5]
     #Gammas = [1]
     #Gammas = [5]
-    Gammas = [100]
+    #Gammas = [100]
     trainingData = readData('data/bank-note/train.csv')
     testData = readData('data/bank-note/test.csv')
     # number = 0
